@@ -3,6 +3,7 @@ extends Area2D
 
 # Declare member variables here. Examples:
 var is_holding = false
+var inventory
 
 #Nodes
 onready var reach = get_node("Reach")
@@ -16,7 +17,10 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	if Input.is_action_just_pressed("player_action"):
-		if is_holding: is_holding = false
+		if is_holding: 
+			is_holding = false
+			
+			inventory.picked_up = false
 		else: 
 			is_holding = true
 			
@@ -35,9 +39,8 @@ func _process(_delta):
 						if distance_to_b < distance_to_nb:
 							nearest_item = item
 				# Picks the nearest item up
-				nearest_item.set_global_position(self.get_global_position()+Vector2(1,-7))
-
-	print(is_holding)
+				nearest_item.picked_up = true
+				inventory = nearest_item
 
 	if Input.is_action_pressed("player_right"):
 		if is_holding: get_node("AnimatedSprite").play("holding_right")
