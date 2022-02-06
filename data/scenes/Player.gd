@@ -21,6 +21,7 @@ func _process(_delta):
 			is_holding = false
 			
 			inventory.picked_up = false
+			inventory.global_position = Vector2(40,32)
 		else: 
 			is_holding = true
 			
