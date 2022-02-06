@@ -23,13 +23,13 @@ func _process(_delta):
 			inventory.picked_up = false
 			inventory.global_position = Vector2(40,32)
 		else: 
-			is_holding = true
-			
 			# Detects the items within range and puts them into an array
 			var items = reach.get_overlapping_areas()
 			
-			# Checks if any items at all are within range
-			if items != null:
+			# Checks if any items at all are within range AND if the first item detected in the area is in the item group
+			if items != null and items[0].is_in_group("item"):
+				is_holding = true
+				
 				# Iterates through all the items and stores the nearest one in a variable
 				var nearest_item = items[0]
 				for item in items:
@@ -40,7 +40,7 @@ func _process(_delta):
 						if distance_to_b < distance_to_nb:
 							nearest_item = item
 				# Picks the nearest item up
-				nearest_item.picked_up = true
+				nearest_item.picked_up = true 
 				inventory = nearest_item
 
 	if Input.is_action_pressed("player_right"):
