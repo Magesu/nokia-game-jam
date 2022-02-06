@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/player_holding.png-be0db103c10353dd40c63d3da9759582.stex"
+path="res://.import/player_carrying.png-996523f0f456c84c8b3a817892043328.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://data/sprites/player_holding.png"
-dest_files=[ "res://.import/player_holding.png-be0db103c10353dd40c63d3da9759582.stex" ]
+source_file="res://data/sprites/player_carrying.png"
+dest_files=[ "res://.import/player_carrying.png-996523f0f456c84c8b3a817892043328.stex" ]
 
 [params]
 
@@ -19,10 +19,10 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=1
+flags/repeat=0
 flags/filter=false
 flags/mipmaps=false
-flags/anisotropic=true
+flags/anisotropic=false
 flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false

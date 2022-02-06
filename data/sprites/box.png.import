@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/caixa.png-9a24212c0a1c5c48d9142a79586b5116.stex"
+path="res://.import/box.png-5c6be5e17426edc37c0d82f14dc7cf11.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://data/sprites/caixa.png"
-dest_files=[ "res://.import/caixa.png-9a24212c0a1c5c48d9142a79586b5116.stex" ]
+source_file="res://data/sprites/box.png"
+dest_files=[ "res://.import/box.png-5c6be5e17426edc37c0d82f14dc7cf11.stex" ]
 
 [params]
 

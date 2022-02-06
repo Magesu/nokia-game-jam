@@ -2,7 +2,7 @@ extends Node2D
 
 
 # Declare member variables here. Examples:
-export var speed = 50
+export var speed = 20
 var move_cooldown = 0
 var width = 135
 var height = 94
@@ -47,6 +47,4 @@ func _process(delta):
 	position.y = round(position.y)
 	position.x = clamp(position.x, -width+42, width+42)
 	position.y = clamp(position.y, -height+24, height+24)
-	
-	print(position)
 
