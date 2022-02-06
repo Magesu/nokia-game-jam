@@ -8,7 +8,7 @@ script/source = "extends Area2D
 # Declare member variables here.
 
 #Scenes
-var wood_scene = preload(\"res://data/scenes/Wood.tscn\")
+var material_scene = preload(\"res://data/scenes/ItemTemplate.tscn\")
 
 #Nodes
 onready var map = self.get_parent()
@@ -18,24 +18,24 @@ func _ready():
 	pass # Replace with function body.
 
 func _collect():
-	# Preparing the wood to create the wood
-	var wood_instance = wood_scene.instance()
-	wood_instance.picked_up = true
+	# Preparing the material to create the material
+	var material_instance = material_scene.instance()
+	material_instance.picked_up = true
 	
-	# Wood creating
-	map.add_child(wood_instance)
+	# material creating
+	map.add_child(material_instance)
 	
 	# Tree destroying
 	self.queue_free()
 	
-	# Returning wood so it can be put into player's inventory
-	return wood_instance
+	# Returning material so it can be put into player's inventory
+	return material_instance
 "
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 3.5, 12.5 )
 
-[node name="Tree" type="Area2D" groups=[
+[node name="Material Source" type="Area2D" groups=[
 "material source",
 ]]
 script = SubResource( 1 )
