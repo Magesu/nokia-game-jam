@@ -19,8 +19,9 @@ func _process(_delta):
 	if Input.is_action_just_pressed("player_action"):
 		if is_holding: 
 			is_holding = false
-			
 			inventory.picked_up = false
+			
+			# Places item at player's feet
 			inventory.global_position = Vector2(40,32)
 		else: 
 			# Detects the items within range and puts them into an array
