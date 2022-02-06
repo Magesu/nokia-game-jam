@@ -4,6 +4,9 @@ extends Area2D
 # Declare member variables here. Examples:
 var is_holding = false
 
+#Nodes
+onready var reach = get_node("Reach")
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	get_node("AnimatedSprite").play("idle")
@@ -14,7 +17,25 @@ func _ready():
 func _process(_delta):
 	if Input.is_action_just_pressed("player_action"):
 		if is_holding: is_holding = false
-		else: is_holding = true
+		else: 
+			is_holding = true
+			
+			# Detects the items within range and puts them into an array
+			var items = reach.get_overlapping_areas()
+			
+			# Checks if any items at all are within range
+			if items != null:
+				# Iterates through all the items and stores the nearest one in a variable
+				var nearest_item = items[0]
+				for item in items:
+					if item.is_in_group("item"):
+						# MATH
+						var distance_to_nb = self.get_global_position().distance_to(nearest_item.get_global_position())
+						var distance_to_b = self.get_global_position().distance_to(item.get_global_position())
+						if distance_to_b < distance_to_nb:
+							nearest_item = item
+				# Picks the nearest item up
+				nearest_item.set_global_position(self.get_global_position()+Vector2(1,-7))
 
 	print(is_holding)
 
@@ -37,5 +58,3 @@ func _process(_delta):
 	else:
 		if is_holding: get_node("AnimatedSprite").play("holding")
 		else: get_node("AnimatedSprite").play("idle")
-		
-
