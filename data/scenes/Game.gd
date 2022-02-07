@@ -13,3 +13,6 @@ func _on_Map_house_data_request():
 	var map = get_node("Map")
 	
 	map.spawn_house(TYPES.WOODEN_MANSION)
+
+func _on_House_upgrade_house(new_house):
+	print(new_house)

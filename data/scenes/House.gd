@@ -13,6 +13,10 @@ var storage_box_texture = preload("res://data/sprites/house_storage_box.png")
 # Nodes
 onready var sprite = get_node("Sprite")
 onready var storage_ui = get_node("Storage")
+onready var game = self.get_parent().get_parent()
+
+# Signals
+signal upgrade_house(new_house)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -48,6 +52,8 @@ func _ready():
 		new_storage_box.name = "Slot" + str(i+1)
 		new_storage_box.texture = storage_box_texture
 		storage_ui.add_child(new_storage_box)
+	
+	connect("upgrade_house", game, "_on_House_upgrade_house")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -59,6 +65,8 @@ func _store(item):
 		item.currentState = item.STATES.STORED
 		storage.append(item)
 		item.global_position = storage_ui.get_child(storage.size()-1).get_global_position() + Vector2(6,6)
+		if storage.size() == storage_limit:
+			emit_signal("upgrade_house",TYPES.ROCK_HUT)
 
 func _withdraw():
 	# Removes an item from storage and returns it, if storage is empty returns null
