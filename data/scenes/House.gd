@@ -1,8 +1,11 @@
 extends Area2D
 
 # Declare member variables here. Examples:
+enum TYPES {HOMELESS, WOOD_CABIN, ROCK_HUT, LEAF_BUNGALOW, WOODEN_MANSION, STONE_TOWER, TREE_HOUSE}
+var current_type = TYPES.HOMELESS
+var current_stage = 0
 var storage = []
-export var storage_limit = 3
+var storage_limit
 
 # Box texture for the ui
 var storage_box_texture = preload("res://data/sprites/house_storage_box.png")
@@ -13,9 +16,31 @@ onready var storage_ui = get_node("Storage")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	# Sets the house's sprite
+	match current_type:
+		TYPES.HOMELESS:
+			sprite.texture = load("res://data/sprites/bench.png")
+		TYPES.WOOD_CABIN:
+			sprite.texture = load("res://data/sprites/wood_cabin.png")
+		TYPES.ROCK_HUT:
+			sprite.texture = load("res://data/sprites/rock_hut.png")
+		TYPES.LEAF_BUNGALOW:
+			sprite.texture = load("res://data/sprites/leaf_bungalow.png")
+		TYPES.WOODEN_MANSION:
+			sprite.texture = load("res://data/sprites/wooden_mansion.png")
+		TYPES.STONE_TOWER:
+			sprite.texture = load("res://data/sprites/stone_tower.png")
+		TYPES.TREE_HOUSE:
+			sprite.texture = load("res://data/sprites/tree_house.png")
+	
 	# MOAR MATH for adjusting sprite position
 	sprite.offset.x = -sprite.texture.get_width()/2
 	sprite.offset.y = -sprite.texture.get_height()
+	
+	match current_stage:
+		0: storage_limit = 1
+		1: storage_limit = 3
+		2: storage_limit = 5
 	
 	# Creates the necessary amount of storage boxes in the ui
 	for i in storage_limit:

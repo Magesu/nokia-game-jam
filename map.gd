@@ -7,11 +7,16 @@ var move_cooldown = 0
 var width = 135
 var height = 94
 
+# Scenes
+var house_scene = preload("res://data/scenes/House.tscn")
+
+# Signals
+signal house_data_request
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
+	connect("house_data_request", self.get_parent(), "_on_Map_house_data_request")
+	emit_signal("house_data_request")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -48,3 +53,10 @@ func _process(delta):
 	position.x = clamp(position.x, -width+42, width+42)
 	position.y = clamp(position.y, -height+24, height+24)
 
+func spawn_house(type, stage):
+	var house = house_scene.instance()
+	house.current_type = type
+	house.current_stage = stage
+	house.position = get_node("House Pos").position
+	
+	self.add_child(house)
