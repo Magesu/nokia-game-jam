@@ -5,12 +5,13 @@ var storage = []
 var storage_limit = 3
 
 # Nodes
+onready var sprite = get_node("Sprite")
 onready var storage_ui = get_node("Storage")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
+	sprite.offset.x = -sprite.texture.get_width()/2
+	sprite.offset.y = -sprite.texture.get_height()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
