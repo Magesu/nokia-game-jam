@@ -31,8 +31,7 @@ func _process(_delta):
 func _store(item):
 	# Checks if there's space at home, if there is add item to storage and move it to the boxes
 	if storage.size() < storage_limit:
-		item.picked_up = false
-		item.stored = true
+		item.currentState = item.STATES.STORED
 		storage.append(item)
 		item.global_position = storage_ui.get_child(storage.size()-1).get_global_position() + Vector2(6,6)
 
@@ -41,6 +40,5 @@ func _withdraw():
 	var stored_item = storage.pop_back()
 	# Check if there's a returnable item in storage, if there is sets the necessary values
 	if stored_item != null:
-		stored_item.stored = false
-		stored_item.picked_up = true
+		stored_item.currentState = stored_item.STATES.PICKED_UP
 	return stored_item

@@ -33,7 +33,7 @@ func _process(_delta):
 			# Else then places item at player's feet
 			else:
 				inventory.global_position = Vector2(40,32)
-				inventory.picked_up = false
+				inventory.currentState = inventory.STATES.DROPPED
 			
 			# Turns off is holding and clears inventory
 			is_holding = false
@@ -47,7 +47,7 @@ func _process(_delta):
 			var temp = []
 			for object in objects:
 				if object.is_in_group("item"):
-					if object.picked_up == true or object.stored == true:
+					if object.currentState != object.STATES.DROPPED:
 						continue
 				elif object.is_in_group("house"):
 					if object.storage == []:
@@ -70,7 +70,7 @@ func _process(_delta):
 				# If the nearest object is an item, player picks it up
 				if nearest_object.is_in_group("item"):
 					is_holding = true
-					nearest_object.picked_up = true 
+					nearest_object.currentState = nearest_object.STATES.PICKED_UP 
 					inventory = nearest_object
 				# If it's a material source, collects the material aka source is destroyed and material is picked up
 				elif nearest_object.is_in_group("material source"):

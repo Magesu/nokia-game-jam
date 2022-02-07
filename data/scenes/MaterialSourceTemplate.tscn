@@ -1,36 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://data/sprites/tree.png" type="Texture" id=1]
-
-[sub_resource type="GDScript" id=1]
-script/source = "extends Area2D
-
-# Declare member variables here.
-
-#Scenes
-var material_scene = preload(\"res://data/scenes/ItemTemplate.tscn\")
-
-#Nodes
-onready var map = self.get_parent()
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-func _collect():
-	# Preparing the material to create the material
-	var material_instance = material_scene.instance()
-	material_instance.picked_up = true
-	
-	# material creating
-	map.add_child(material_instance)
-	
-	# Material source destroying
-	self.queue_free()
-	
-	# Returning material so it can be put into player's inventory
-	return material_instance
-"
+[ext_resource path="res://data/scenes/MaterialSource.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 3.5, 12.5 )
@@ -39,7 +10,7 @@ extents = Vector2( 3.5, 12.5 )
 "material source",
 ]]
 collision_layer = 4
-script = SubResource( 1 )
+script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
