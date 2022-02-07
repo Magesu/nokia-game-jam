@@ -7,6 +7,7 @@ script/source = "extends Area2D
 
 # Declare member variables here.
 var picked_up = false
+var stored = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -23,6 +24,7 @@ extents = Vector2( 4, 3 )
 [node name="Wood" type="Area2D" groups=[
 "item",
 ]]
+collision_layer = 4
 script = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]

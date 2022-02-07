@@ -38,6 +38,7 @@ extents = Vector2( 8, 6.5 )
 [node name="Stone Pile" type="Area2D" groups=[
 "material source",
 ]]
+collision_layer = 4
 script = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]

@@ -38,6 +38,7 @@ extents = Vector2( 6.5, 6 )
 [node name="Bush" type="Area2D" groups=[
 "material source",
 ]]
+collision_layer = 2147483652
 script = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]

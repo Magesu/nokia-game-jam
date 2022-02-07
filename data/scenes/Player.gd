@@ -17,24 +17,50 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	if Input.is_action_just_pressed("player_action"):
-		if is_holding: 
+		if is_holding:
+			# Detects if the house is nearby and stores the house node into a variable
+			var house
+			var objects = reach.get_overlapping_areas()
+			
+			for object in objects:
+				if object.is_in_group("house"):
+					house = object
+					break
+			
+			# If house exists and the storage has space, store what the player is holding
+			if house != null and house.storage.size() < house.storage_limit:
+				house._store(inventory)
+			# Else then places item at player's feet
+			else:
+				inventory.global_position = Vector2(40,32)
+				inventory.picked_up = false
+			
+			# Turns off is holding and clears inventory
 			is_holding = false
-			inventory.picked_up = false
-			
-			# Places item at player's feet
-			inventory.global_position = Vector2(40,32)
-			
 			inventory = null
 		else: 
 			# Detects the objects within range and puts them into an array
-			var objects = reach.get_overlapping_areas()
-			objects.remove(objects.find(self))
+			var objects = []
+			objects = reach.get_overlapping_areas()
+			
+			# Filters out unpickable objects
+			var temp = []
+			for object in objects:
+				if object.is_in_group("item"):
+					if object.picked_up == true or object.stored == true:
+						continue
+				elif object.is_in_group("house"):
+					if object.storage == []:
+						continue
+				temp.append(object)
+			objects = temp
 			
 			# Checks if any objects at all are within range
 			if objects != []:
 				# Iterates through all the objects and stores the nearest one in a variable
 				var nearest_object = objects[0]
-				for object in objects:
+				
+				for object in objects:					
 					# MATH
 					var distance_to_no = self.get_global_position().distance_to(nearest_object.get_global_position())
 					var distance_to_o = self.get_global_position().distance_to(object.get_global_position())
@@ -46,10 +72,18 @@ func _process(_delta):
 					is_holding = true
 					nearest_object.picked_up = true 
 					inventory = nearest_object
+				# If it's a material source, collects the material aka source is destroyed and material is picked up
 				elif nearest_object.is_in_group("material source"):
 					is_holding = true
 					inventory = nearest_object._collect()
-				
+				# If it's a house, checks if there's stuff in the house and if there is withdraws the rightmost item
+				elif nearest_object.is_in_group("house"):
+					var house_object = nearest_object._withdraw()
+					if house_object != null:
+						is_holding = true
+						inventory = house_object
+					else:
+						is_holding = false
 	
 	if Input.is_action_pressed("player_right"):
 		if is_holding: get_node("AnimatedSprite").play("holding_right")
