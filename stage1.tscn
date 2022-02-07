@@ -8,6 +8,7 @@
 
 [node name="Map" type="Node2D"]
 script = ExtResource( 2 )
+stage = 1
 
 [node name="Park" type="Sprite" parent="."]
 texture = ExtResource( 1 )
@@ -20,3 +21,21 @@ position = Vector2( 4, 72 )
 
 [node name="Bush" parent="." instance=ExtResource( 9 )]
 position = Vector2( 25, 45 )
+
+[node name="Stone Pile2" parent="." instance=ExtResource( 8 )]
+position = Vector2( -48, 56 )
+
+[node name="Tree2" parent="." instance=ExtResource( 6 )]
+position = Vector2( -31, -38 )
+
+[node name="Bush2" parent="." instance=ExtResource( 9 )]
+position = Vector2( -55, 8 )
+
+[node name="Stone Pile3" parent="." instance=ExtResource( 8 )]
+position = Vector2( -82, 38 )
+
+[node name="Bush3" parent="." instance=ExtResource( 9 )]
+position = Vector2( 64, 14 )
+
+[node name="Tree3" parent="." instance=ExtResource( 6 )]
+position = Vector2( -109, 66 )

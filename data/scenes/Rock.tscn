@@ -11,6 +11,7 @@ extents = Vector2( 4, 3 )
 ]]
 collision_layer = 4
 script = ExtResource( 2 )
+material_type = 1
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, 1 )

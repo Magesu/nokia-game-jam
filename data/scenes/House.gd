@@ -2,6 +2,7 @@ extends Area2D
 
 # Declare member variables here. Examples:
 enum TYPES {HOMELESS, WOOD_CABIN, ROCK_HUT, LEAF_BUNGALOW, WOODEN_MANSION, STONE_TOWER, TREE_HOUSE}
+enum MATERIAL_TYPES {WOOD, ROCK, LEAF}
 var current_type = TYPES.HOMELESS
 var current_stage = 0
 var storage = []
@@ -66,7 +67,36 @@ func _store(item):
 		storage.append(item)
 		item.global_position = storage_ui.get_child(storage.size()-1).get_global_position() + Vector2(6,6)
 		if storage.size() == storage_limit:
-			emit_signal("upgrade_house",TYPES.ROCK_HUT)
+			
+			var storage_materials = []
+			for item in storage:
+				storage_materials.append(item.material_type)
+			
+			var wood_quantity = storage_materials.count(MATERIAL_TYPES.WOOD)
+			var rock_quantity = storage_materials.count(MATERIAL_TYPES.ROCK)
+			var leaf_quantity = storage_materials.count(MATERIAL_TYPES.LEAF)
+			
+			var new_house
+			
+			match current_stage:
+				0:
+					if wood_quantity > 0:
+						new_house = TYPES.WOOD_CABIN
+					if rock_quantity > 0:
+						new_house = TYPES.ROCK_HUT
+					if leaf_quantity > 0:
+						new_house = TYPES.LEAF_BUNGALOW
+				1:
+					if wood_quantity > 0:
+						new_house = TYPES.WOODEN_MANSION
+					if rock_quantity > 0:
+						new_house = TYPES.STONE_TOWER
+					if leaf_quantity > 0:
+						new_house = TYPES.TREE_HOUSE
+				2:
+					pass
+			
+			emit_signal("upgrade_house",new_house)
 
 func _withdraw():
 	# Removes an item from storage and returns it, if storage is empty returns null
