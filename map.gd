@@ -7,6 +7,8 @@ var move_cooldown = 0
 var width = 135
 var height = 94
 
+export var stage = 0
+
 # Scenes
 var house_scene = preload("res://data/scenes/House.tscn")
 
@@ -53,7 +55,7 @@ func _process(delta):
 	position.x = clamp(position.x, -width+42, width+42)
 	position.y = clamp(position.y, -height+24, height+24)
 
-func spawn_house(type, stage):
+func spawn_house(type):
 	var house = house_scene.instance()
 	house.current_type = type
 	house.current_stage = stage

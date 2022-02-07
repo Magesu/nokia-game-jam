@@ -12,4 +12,4 @@ func _ready() -> void:
 func _on_Map_house_data_request():
 	var map = get_node("Map")
 	
-	map.spawn_house(TYPES.WOODEN_MANSION,2)
+	map.spawn_house(TYPES.WOODEN_MANSION)
