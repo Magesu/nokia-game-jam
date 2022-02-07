@@ -2,7 +2,10 @@ extends Area2D
 
 # Declare member variables here. Examples:
 var storage = []
-var storage_limit = 3
+export var storage_limit = 3
+
+# Box texture for the ui
+var storage_box_texture = preload("res://data/sprites/house_storage_box.png")
 
 # Nodes
 onready var sprite = get_node("Sprite")
@@ -10,8 +13,16 @@ onready var storage_ui = get_node("Storage")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	# MOAR MATH for adjusting sprite position
 	sprite.offset.x = -sprite.texture.get_width()/2
 	sprite.offset.y = -sprite.texture.get_height()
+	
+	# Creates the necessary amount of storage boxes in the ui
+	for i in storage_limit:
+		var new_storage_box = TextureRect.new()
+		new_storage_box.name = "Slot" + str(i+1)
+		new_storage_box.texture = storage_box_texture
+		storage_ui.add_child(new_storage_box)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
