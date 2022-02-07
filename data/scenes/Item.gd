@@ -11,6 +11,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
+	#Checks what the current state of the items is to decide what do to with it
 	match currentState:
 		STATES.DROPPED:
 			pass
