@@ -87,11 +87,11 @@ func _store(item):
 					if leaf_quantity > 0:
 						new_house = TYPES.LEAF_BUNGALOW
 				1:
-					if wood_quantity > 0:
+					if wood_quantity > 1:
 						new_house = TYPES.WOODEN_MANSION
-					if rock_quantity > 0:
+					if rock_quantity > 1:
 						new_house = TYPES.STONE_TOWER
-					if leaf_quantity > 0:
+					if leaf_quantity > 1:
 						new_house = TYPES.TREE_HOUSE
 				2:
 					pass
