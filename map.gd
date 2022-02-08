@@ -2,7 +2,7 @@ extends Node2D
 
 
 # Declare member variables here. Examples:
-export var speed = 20
+export var speed = 40
 var move_cooldown = 0
 var width = 135
 var height = 94

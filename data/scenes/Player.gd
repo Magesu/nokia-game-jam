@@ -17,7 +17,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	# Makes the order of drawing in the screen dependant on the Y coordinate to give the impression of depth
-	z_index = position.y
+	z_index = int(position.y)
 	
 	if Input.is_action_just_pressed("player_action"):
 		if is_holding:

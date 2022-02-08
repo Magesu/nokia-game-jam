@@ -15,9 +15,9 @@ func _ready():
 	
 func _process(_delta):
 	# Makes the order of drawing in the screen dependant on the Y coordinate to give the impression of depth
-	z_index = global_position.y
+	z_index = int(global_position.y)
 	# Avoids that the resource is drawn behind the park background
-	z_index = clamp(z_index, 0, global_position.y)
+	z_index = int(clamp(z_index, 0, global_position.y))
 
 func _collect():
 	# Preparing the material to create the material

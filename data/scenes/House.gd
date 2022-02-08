@@ -66,37 +66,40 @@ func _store(item):
 		item.currentState = item.STATES.STORED
 		storage.append(item)
 		item.global_position = storage_ui.get_child(storage.size()-1).get_global_position() + Vector2(6,6)
-		if storage.size() == storage_limit:
-			
-			var storage_materials = []
-			for item in storage:
-				storage_materials.append(item.material_type)
-			
-			var wood_quantity = storage_materials.count(MATERIAL_TYPES.WOOD)
-			var rock_quantity = storage_materials.count(MATERIAL_TYPES.ROCK)
-			var leaf_quantity = storage_materials.count(MATERIAL_TYPES.LEAF)
-			
-			var new_house
-			
-			match current_stage:
-				0:
-					if wood_quantity > 0:
-						new_house = TYPES.WOOD_CABIN
-					if rock_quantity > 0:
-						new_house = TYPES.ROCK_HUT
-					if leaf_quantity > 0:
-						new_house = TYPES.LEAF_BUNGALOW
-				1:
-					if wood_quantity > 1:
-						new_house = TYPES.WOODEN_MANSION
-					if rock_quantity > 1:
-						new_house = TYPES.STONE_TOWER
-					if leaf_quantity > 1:
-						new_house = TYPES.TREE_HOUSE
-				2:
-					pass
-			
-			emit_signal("upgrade_house",new_house)
+	if storage.size() == storage_limit:
+		
+		var storage_materials = []
+		for item in storage:
+			storage_materials.append(item.material_type)
+		
+		var wood_quantity = storage_materials.count(MATERIAL_TYPES.WOOD)
+		var rock_quantity = storage_materials.count(MATERIAL_TYPES.ROCK)
+		var leaf_quantity = storage_materials.count(MATERIAL_TYPES.LEAF)
+		
+		var new_house
+		
+		match current_stage:
+			0:
+				if wood_quantity > 0:
+					new_house = TYPES.WOOD_CABIN
+				if rock_quantity > 0:
+					new_house = TYPES.ROCK_HUT
+				if leaf_quantity > 0:
+					new_house = TYPES.LEAF_BUNGALOW
+			1:
+				if wood_quantity > 1:
+					new_house = TYPES.WOODEN_MANSION
+				elif rock_quantity > 1:
+					new_house = TYPES.STONE_TOWER
+				elif leaf_quantity > 1:
+					new_house = TYPES.TREE_HOUSE
+				else:
+					self._fall_out()
+					return
+			2:
+				pass
+		
+		emit_signal("upgrade_house",new_house)
 
 func _withdraw():
 	# Removes an item from storage and returns it, if storage is empty returns null
@@ -105,3 +108,9 @@ func _withdraw():
 	if stored_item != null:
 		stored_item.currentState = stored_item.STATES.PICKED_UP
 	return stored_item
+
+func _fall_out():
+	for item in storage:
+		var stored_item = storage.pop_back()
+		stored_item.global_position = storage_ui.get_child(storage.size()-1).get_global_position() + Vector2(20,16)
+		stored_item.currentState = stored_item.STATES.DROPPED
