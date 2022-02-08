@@ -15,8 +15,14 @@ func _ready():
 func _process(_delta):
 	match currentState:
 		STATES.DROPPED:
+			# Syncs "depth" with the map's
+			z_index = 0
 			pass
 		STATES.PICKED_UP:
 			global_position = Vector2(40, 19)
+			# Syncs "depth" with the player's
+			z_index = 26
 		STATES.STORED:
+			# Syncs "depth" with the map's
+			z_index = 0
 			pass

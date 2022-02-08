@@ -12,6 +12,12 @@ onready var map = self.get_parent()
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	material_scene = load(material_scene_path)
+	
+func _process(_delta):
+	# Makes the order of drawing in the screen dependant on the Y coordinate to give the impression of depth
+	z_index = global_position.y
+	# Avoids that the resource is drawn behind the park background
+	z_index = clamp(z_index, 0, global_position.y)
 
 func _collect():
 	# Preparing the material to create the material

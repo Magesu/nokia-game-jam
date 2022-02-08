@@ -6,16 +6,15 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 6.5 )
 
-[node name="Stone Pile" type="Area2D" groups=[
-"material source",
-]]
+[node name="Stone Pile" type="Area2D" groups=["material source"]]
 collision_layer = 4
 script = ExtResource( 2 )
 material_scene_path = "res://data/scenes/Rock.tscn"
 
-[node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 1 )
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 1.5 )
+position = Vector2( 0, -1 )
 shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -3 )
+texture = ExtResource( 1 )
