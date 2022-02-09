@@ -96,6 +96,7 @@ func _store(item):
 			storage.append(item)
 			item.global_position = storage_ui.get_child(storage.size()-1).get_global_position() + Vector2(6,6)
 			if storage.size() == storage_limit:
+				
 				var storage_materials = []
 				for item in storage:
 					storage_materials.append(item.material_type)
@@ -126,23 +127,21 @@ func _store(item):
 							self._fall_out()
 							return
 					2:
-						if wood_quantity > 2:
-							if current_type == TYPES.TEMPLE:
-								ending = ENDINGS.WOOD_NECRONOMICON
-							else:
-								ending = ENDINGS.WOOD_NORMAL
-						elif rock_quantity > 2:
-							if current_type == TYPES.MINE:
-								ending = ENDINGS.ROCK_PICKAXE
-							else:
-								ending = ENDINGS.ROCK_NORMAL
-						elif leaf_quantity > 2:
-							if current_type == TYPES.ALIEN_PYRAMID:
-								ending = ENDINGS.LEAF_SINALIZER
-							else:
-								ending = ENDINGS.LEAF_NORMAL
+						if current_type == TYPES.TEMPLE:
+							ending = ENDINGS.WOOD_NECRONOMICON
+						elif current_type == TYPES.MINE:
+							ending = ENDINGS.ROCK_PICKAXE
+						elif current_type == TYPES.ALIEN_PYRAMID:
+							ending = ENDINGS.LEAF_SINALIZER
 						else:
-							ending = ENDINGS.MIXED
+							if wood_quantity > 2:
+								ending = ENDINGS.WOOD_NORMAL
+							elif rock_quantity > 2:
+								ending = ENDINGS.ROCK_NORMAL
+							elif leaf_quantity > 2:
+								ending = ENDINGS.LEAF_NORMAL
+							else:
+								ending = ENDINGS.MIXED
 				
 				emit_signal("upgrade_house",new_house,ENDINGS,ending)
 
