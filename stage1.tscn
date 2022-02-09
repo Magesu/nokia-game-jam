@@ -21,6 +21,7 @@ load_path = "res://.import/fairy_ring.png-5b00137937b261151272dc0e68b6d60e.stex"
 [node name="Map" type="Node2D"]
 script = ExtResource( 2 )
 stage = 1
+possible_item_spawn_locations_node_paths = [ NodePath("Item Spawn 1"), NodePath("Item Spawn 2"), NodePath("Item Spawn 3"), NodePath("Item Spawn 4") ]
 
 [node name="Park" type="Sprite" parent="."]
 texture = ExtResource( 1 )
@@ -65,5 +66,5 @@ position = Vector2( 70, 66 )
 texture = SubResource( 3 )
 
 [node name="Item Spawn 4" type="Sprite" parent="."]
-position = Vector2( -49, 31 )
+position = Vector2( -110, 25 )
 texture = SubResource( 4 )

@@ -9,7 +9,8 @@ var height = 94
 
 export var stage = 0
 
-var possible_item_spawn_locations
+export(Array,NodePath) var possible_item_spawn_locations_node_paths = []
+var possible_item_spawn_locations = []
 var item_spawn_pos
 
 # Scenes
@@ -68,7 +69,10 @@ func spawn_house(type):
 	self.add_child(house)
 	
 	if stage == 1:
-		possible_item_spawn_locations = [get_node("Item Spawn 1").position,get_node("Item Spawn 2").position,get_node("Item Spawn 3").position,get_node("Item Spawn 4").position]
+		possible_item_spawn_locations = []
+		for i in possible_item_spawn_locations_node_paths.size():
+			possible_item_spawn_locations.append(get_node(possible_item_spawn_locations_node_paths[i]).position)
+		
 		item_spawn_pos = possible_item_spawn_locations[randi() % possible_item_spawn_locations.size()]
 		
 		if house.current_type == house.TYPES.WOOD_CABIN:
@@ -84,7 +88,10 @@ func spawn_house(type):
 		
 			self.add_child(special_item)
 	elif stage == 2:
-		possible_item_spawn_locations = [get_node("Item Spawn 1").position,get_node("Item Spawn 2").position,get_node("Item Spawn 3").position,get_node("Item Spawn 4").position]
+		possible_item_spawn_locations = []
+		for i in possible_item_spawn_locations_node_paths.size():
+			possible_item_spawn_locations.append(get_node(possible_item_spawn_locations_node_paths[i]).position)
+		
 		item_spawn_pos = possible_item_spawn_locations[randi() % possible_item_spawn_locations.size()]
 		
 		if house.current_type == house.TYPES.WOODEN_MANSION:
