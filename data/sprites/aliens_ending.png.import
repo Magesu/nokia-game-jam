@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/splash.png-83c95f0daa03fae4f16a3aceddd530ef.stex"
+path="res://.import/aliens_ending.png-3a67132b34f904d5845ecda63decf1eb.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://data/sprites/splash.png"
-dest_files=[ "res://.import/splash.png-83c95f0daa03fae4f16a3aceddd530ef.stex" ]
+source_file="res://data/sprites/aliens_ending.png"
+dest_files=[ "res://.import/aliens_ending.png-3a67132b34f904d5845ecda63decf1eb.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -30,5 +30,5 @@ process/HDR_as_SRGB=false
 process/invert_color=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0

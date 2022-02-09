@@ -19,7 +19,7 @@ var stage_2_scene = preload("res://stage2.tscn")
 var ending_scene = preload("res://data/scenes/Ending.tscn")
 
 func _ready() -> void:	
-	pass
+	fade_in()
 	#AudioManager.play_music(music)
 	#$UI/AnimationPlayer.play("New Anim")
 
@@ -34,8 +34,11 @@ func _process(_delta):
 	elif current_stage == 3:
 		if Input.is_action_just_pressed("player_action"):
 			var ending = self.get_child(self.get_child_count()-1)
+			anim_player.play("Fade")
+			yield(anim_player, "animation_finished")
 			ending.queue_free()
 			current_stage = -1
+			fade_in()
 
 func _on_Map_house_data_request():
 	var map = self.get_child(self.get_child_count()-1)
@@ -73,7 +76,7 @@ func _on_House_upgrade_house(new_house,ENDINGS,ending):
 				ENDINGS.WOOD_BAT:
 					print("ENDING: WOOD_BAT")
 				ENDINGS.ROCK_NORMAL:
-					print("ENDING: ROCK_NORMAL")
+					ending_scene = preload("res://data/scenes/NormalRockEnding.tscn")
 				ENDINGS.ROCK_PICKAXE:
 					print("ENDING: ROCK_PICKAXE")
 				ENDINGS.ROCK_MAGIC_HAT:
@@ -81,7 +84,7 @@ func _on_House_upgrade_house(new_house,ENDINGS,ending):
 				ENDINGS.LEAF_NORMAL:
 					ending_scene = preload("res://data/scenes/NormalLeafEnding.tscn")
 				ENDINGS.LEAF_SINALIZER:
-					print("ENDING: LEAF_SINALIZER")
+					ending_scene = preload("res://data/scenes/SinalizerLeafEnding.tscn")
 				ENDINGS.LEAF_CLAPBOARD:
 					print("ENDING: LEAF_CLAPBOARD")
 				ENDINGS.MIXED:
