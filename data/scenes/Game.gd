@@ -16,7 +16,7 @@ var stage_0_scene = preload("res://stage0.tscn")
 var stage_1_scene = preload("res://stage1.tscn")
 var stage_2_scene = preload("res://stage2.tscn")
 
-var ending_scene
+var ending_scene = preload("res://data/scenes/Ending.tscn")
 
 func _ready() -> void:	
 	pass
@@ -68,11 +68,25 @@ func _on_House_upgrade_house(new_house,ENDINGS,ending):
 			match ending:
 				ENDINGS.WOOD_NORMAL:
 					ending_scene = preload("res://data/scenes/NormalWoodEnding.tscn")
+				ENDINGS.WOOD_NECRONOMICON:
+					print("ENDING: WOOD_NECRONOMICON")
+				ENDINGS.WOOD_BAT:
+					print("ENDING: WOOD_BAT")
+				ENDINGS.ROCK_NORMAL:
+					print("ENDING: ROCK_NORMAL")
+				ENDINGS.ROCK_PICKAXE:
+					print("ENDING: ROCK_PICKAXE")
+				ENDINGS.ROCK_MAGIC_HAT:
+					print("ENDING: ROCK_MAGIC_HAT")
 				ENDINGS.LEAF_NORMAL:
 					ending_scene = preload("res://data/scenes/NormalLeafEnding.tscn")
-				_:
-					ending_scene = preload("res://data/scenes/Ending.tscn")
-				
+				ENDINGS.LEAF_SINALIZER:
+					print("ENDING: LEAF_SINALIZER")
+				ENDINGS.LEAF_CLAPBOARD:
+					print("ENDING: LEAF_CLAPBOARD")
+				ENDINGS.MIXED:
+					print("ENDING: MIXED")
+					
 			ending = ending_scene.instance()
 			self.add_child(ending)
 			fade_in()

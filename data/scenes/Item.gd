@@ -1,8 +1,10 @@
 extends Area2D
 
 # Declare member variables here. Examples:
-enum MATERIAL_TYPES {WOOD, ROCK, LEAF}
+enum MATERIAL_TYPES {WOOD, ROCK, LEAF, SPECIAL}
+enum SPECIAL_TYPES {NONE, NECRONOMICON, BAT, PICKAXE, MAGIC_HAT, SINALIZER, CLAPBOARD}
 export(MATERIAL_TYPES) var material_type = MATERIAL_TYPES.WOOD
+export(SPECIAL_TYPES) var special_type = SPECIAL_TYPES.NONE
 enum STATES {DROPPED, PICKED_UP, STORED}
 var currentState = STATES.DROPPED
 
