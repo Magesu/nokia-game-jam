@@ -1,13 +1,22 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://data/sprites/park.png" type="Texture" id=1]
 [ext_resource path="res://map.gd" type="Script" id=2]
-[ext_resource path="res://data/scenes/Necronomicon.tscn" type="PackedScene" id=3]
-[ext_resource path="res://data/scenes/Sinalizer.tscn" type="PackedScene" id=4]
-[ext_resource path="res://data/scenes/Pickaxe.tscn" type="PackedScene" id=5]
 [ext_resource path="res://data/scenes/Tree.tscn" type="PackedScene" id=6]
 [ext_resource path="res://data/scenes/StonePile.tscn" type="PackedScene" id=8]
 [ext_resource path="res://data/scenes/Bush.tscn" type="PackedScene" id=9]
+
+[sub_resource type="StreamTexture" id=1]
+load_path = "res://.import/fairy_ring.png-5b00137937b261151272dc0e68b6d60e.stex"
+
+[sub_resource type="StreamTexture" id=2]
+load_path = "res://.import/fairy_ring.png-5b00137937b261151272dc0e68b6d60e.stex"
+
+[sub_resource type="StreamTexture" id=3]
+load_path = "res://.import/fairy_ring.png-5b00137937b261151272dc0e68b6d60e.stex"
+
+[sub_resource type="StreamTexture" id=4]
+load_path = "res://.import/fairy_ring.png-5b00137937b261151272dc0e68b6d60e.stex"
 
 [node name="Map" type="Node2D"]
 script = ExtResource( 2 )
@@ -43,11 +52,18 @@ position = Vector2( 64, 14 )
 [node name="Tree3" parent="." instance=ExtResource( 6 )]
 position = Vector2( -109, 66 )
 
-[node name="Necronomicon" parent="." instance=ExtResource( 3 )]
-position = Vector2( 74, 63 )
+[node name="Item Spawn 1" type="Sprite" parent="."]
+position = Vector2( -80, -31 )
+texture = SubResource( 1 )
 
-[node name="Sinalizer" parent="." instance=ExtResource( 4 )]
-position = Vector2( 89, 43 )
+[node name="Item Spawn 2" type="Sprite" parent="."]
+position = Vector2( 70, -64 )
+texture = SubResource( 2 )
 
-[node name="Pickaxe" parent="." instance=ExtResource( 5 )]
-position = Vector2( 100, 72 )
+[node name="Item Spawn 3" type="Sprite" parent="."]
+position = Vector2( 70, 66 )
+texture = SubResource( 3 )
+
+[node name="Item Spawn 4" type="Sprite" parent="."]
+position = Vector2( -49, 31 )
+texture = SubResource( 4 )

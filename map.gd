@@ -9,8 +9,12 @@ var height = 94
 
 export var stage = 0
 
+var possible_item_spawn_locations
+var item_spawn_pos
+
 # Scenes
 var house_scene = preload("res://data/scenes/House.tscn")
+var item_scene
 
 # Signals
 signal house_data_request
@@ -62,3 +66,36 @@ func spawn_house(type):
 	house.position = Vector2(0,0)
 	
 	self.add_child(house)
+	
+	if stage == 1:
+		possible_item_spawn_locations = [get_node("Item Spawn 1").position,get_node("Item Spawn 2").position,get_node("Item Spawn 3").position,get_node("Item Spawn 4").position]
+		item_spawn_pos = possible_item_spawn_locations[randi() % possible_item_spawn_locations.size()]
+		
+		if house.current_type == house.TYPES.WOOD_CABIN:
+			item_scene = preload("res://data/scenes/Necronomicon.tscn")
+		elif house.current_type == house.TYPES.ROCK_HUT:
+			item_scene = preload("res://data/scenes/Pickaxe.tscn")
+		elif house.current_type == house.TYPES.LEAF_BUNGALOW:
+			item_scene = preload("res://data/scenes/Sinalizer.tscn")
+		
+		if item_scene != null:
+			var special_item = item_scene.instance()
+			special_item.position = item_spawn_pos
+		
+			self.add_child(special_item)
+	elif stage == 2:
+		possible_item_spawn_locations = [get_node("Item Spawn 1").position,get_node("Item Spawn 2").position,get_node("Item Spawn 3").position,get_node("Item Spawn 4").position]
+		item_spawn_pos = possible_item_spawn_locations[randi() % possible_item_spawn_locations.size()]
+		
+		if house.current_type == house.TYPES.WOODEN_MANSION:
+			item_scene = preload("res://data/scenes/Bat.tscn")
+		elif house.current_type == house.TYPES.STONE_TOWER:
+			item_scene = preload("res://data/scenes/MagicHat.tscn")
+		elif house.current_type == house.TYPES.TREE_HOUSE:
+			item_scene = preload("res://data/scenes/Clapboard.tscn")
+		
+		if item_scene != null:
+			var special_item = item_scene.instance()
+			special_item.position = item_spawn_pos
+		
+			self.add_child(special_item)

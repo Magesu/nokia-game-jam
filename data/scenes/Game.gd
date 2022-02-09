@@ -74,19 +74,19 @@ func _on_House_upgrade_house(new_house,ENDINGS,ending):
 				ENDINGS.WOOD_NECRONOMICON:
 					print("ENDING: WOOD_NECRONOMICON")
 				ENDINGS.WOOD_BAT:
-					print("ENDING: WOOD_BAT")
+					ending_scene = preload("res://data/scenes/BatWoodEnding.tscn")
 				ENDINGS.ROCK_NORMAL:
 					ending_scene = preload("res://data/scenes/NormalRockEnding.tscn")
 				ENDINGS.ROCK_PICKAXE:
 					print("ENDING: ROCK_PICKAXE")
 				ENDINGS.ROCK_MAGIC_HAT:
-					print("ENDING: ROCK_MAGIC_HAT")
+					ending_scene = preload("res://data/scenes/MagicHatRockEnding.tscn")
 				ENDINGS.LEAF_NORMAL:
 					ending_scene = preload("res://data/scenes/NormalLeafEnding.tscn")
 				ENDINGS.LEAF_SINALIZER:
 					ending_scene = preload("res://data/scenes/SinalizerLeafEnding.tscn")
 				ENDINGS.LEAF_CLAPBOARD:
-					print("ENDING: LEAF_CLAPBOARD")
+					ending_scene = preload("res://data/scenes/ClapboardLeafEnding.tscn")
 				ENDINGS.MIXED:
 					print("ENDING: MIXED")
 					
