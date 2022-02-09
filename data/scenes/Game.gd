@@ -1,11 +1,10 @@
 extends Node
 
 # Variables
-enum TYPES {HOMELESS, WOOD_CABIN, ROCK_HUT, LEAF_BUNGALOW, WOODEN_MANSION, STONE_TOWER, TREE_HOUSE}
 var music:AudioStream = preload("res://data/music/tune.wav")
 
 var current_stage = -1
-var house_holder = TYPES.HOMELESS
+var house_holder
 var map_offset = Vector2(39,7)
 var player_offset = Vector2(40, 27)
 
@@ -17,7 +16,7 @@ var stage_0_scene = preload("res://stage0.tscn")
 var stage_1_scene = preload("res://stage1.tscn")
 var stage_2_scene = preload("res://stage2.tscn")
 
-var ending = preload("res://data/scenes/Ending.tscn")
+var ending_scene
 
 func _ready() -> void:	
 	pass
@@ -34,8 +33,8 @@ func _process(_delta):
 			
 	elif current_stage == 3:
 		if Input.is_action_just_pressed("player_action"):
-			var cur_ending = self.get_child(self.get_child_count()-1)
-			cur_ending.queue_free()
+			var ending = self.get_child(self.get_child_count()-1)
+			ending.queue_free()
 			current_stage = -1
 
 func _on_Map_house_data_request():
@@ -44,7 +43,7 @@ func _on_Map_house_data_request():
 	
 	map.spawn_house(house_holder)
 
-func _on_House_upgrade_house(new_house):
+func _on_House_upgrade_house(new_house,ENDINGS,ending):
 	
 	anim_player.play("Fade")
 	yield(anim_player, "animation_finished")
@@ -65,13 +64,18 @@ func _on_House_upgrade_house(new_house):
 			current_stage+=1
 			var player = self.get_child(self.get_child_count()-2)
 			player.queue_free()
-			var cur_ending = ending.instance()
-			self.add_child(cur_ending)
+			
+			match ending:
+				ENDINGS.WOOD_NORMAL:
+					ending_scene = preload("res://data/scenes/NormalWoodEnding.tscn")
+				ENDINGS.LEAF_NORMAL:
+					ending_scene = preload("res://data/scenes/NormalLeafEnding.tscn")
+				_:
+					ending_scene = preload("res://data/scenes/Ending.tscn")
+				
+			ending = ending_scene.instance()
+			self.add_child(ending)
 			fade_in()
-
-func fade_out():
-	anim_player.play("Fade")
-	yield(anim_player, "animation_finished")
 
 func fade_in():
 	anim_player.play_backwards("Fade")
@@ -82,7 +86,7 @@ func open_stage_0():
 	player.position = player_offset
 	self.add_child(player)
 
-	house_holder = TYPES.HOMELESS
+	house_holder = 0 # TYPES.HOMELESS
 	current_stage += 1
 	var stage_0 = stage_0_scene.instance()
 	stage_0.position = map_offset

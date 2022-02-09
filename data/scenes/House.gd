@@ -2,6 +2,7 @@ extends Area2D
 
 # Declare member variables here. Examples:
 enum TYPES {HOMELESS, WOOD_CABIN, ROCK_HUT, LEAF_BUNGALOW, WOODEN_MANSION, STONE_TOWER, TREE_HOUSE}
+enum ENDINGS {WOOD_NORMAL,LEAF_NORMAL}
 enum MATERIAL_TYPES {WOOD, ROCK, LEAF}
 var current_type = TYPES.HOMELESS
 var current_stage = 0
@@ -17,7 +18,7 @@ onready var storage_ui = get_node("Storage")
 onready var game = self.get_parent().get_parent()
 
 # Signals
-signal upgrade_house(new_house)
+signal upgrade_house(new_house,ENDINGS,ending)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -77,6 +78,7 @@ func _store(item):
 		var leaf_quantity = storage_materials.count(MATERIAL_TYPES.LEAF)
 		
 		var new_house
+		var ending
 		
 		match current_stage:
 			0:
@@ -97,9 +99,12 @@ func _store(item):
 					self._fall_out()
 					return
 			2:
-				pass
+				if wood_quantity > 2:
+					ending = ENDINGS.WOOD_NORMAL
+				if leaf_quantity > 2:
+					ending = ENDINGS.LEAF_NORMAL
 		
-		emit_signal("upgrade_house",new_house)
+		emit_signal("upgrade_house",new_house,ENDINGS,ending)
 
 func _withdraw():
 	# Removes an item from storage and returns it, if storage is empty returns null
