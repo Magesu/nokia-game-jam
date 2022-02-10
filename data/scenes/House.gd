@@ -90,6 +90,8 @@ func _store(item):
 				item.SPECIAL_TYPES.CLAPBOARD:
 					ending = ENDINGS.LEAF_CLAPBOARD
 			
+			item.queue_free()
+			
 			emit_signal("upgrade_house",new_house,ENDINGS,ending)
 			
 		else:

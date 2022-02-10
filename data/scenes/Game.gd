@@ -24,25 +24,25 @@ func _ready() -> void:
 	#$UI/AnimationPlayer.play("New Anim")
 
 func _process(_delta):
-	if current_stage == -1:
-		if Input.is_action_just_pressed("player_action"):
-			anim_player.play("Fade")
-			yield(anim_player, "animation_finished")
-			open_stage_0()
-			fade_in()
-			
-	elif current_stage == 3:
-		if Input.is_action_just_pressed("player_action"):
-			var ending = self.get_child(self.get_child_count()-1)
-			anim_player.play("Fade")
-			yield(anim_player, "animation_finished")
-			ending.queue_free()
-			current_stage = -1
+	if !anim_player.is_playing():
+		if current_stage == -1:
+			if Input.is_action_just_pressed("player_action"):
+				anim_player.play("Fade")
+				yield(anim_player, "animation_finished")
+				open_stage_0()
+				fade_in()
+				
+		elif current_stage == 3:
+			if Input.is_action_just_pressed("player_action"):
+				var ending = self.get_child(self.get_child_count()-1)
+				anim_player.play("Fade")
+				yield(anim_player, "animation_finished")
+				ending.queue_free()
+				current_stage = -1
 			fade_in()
 
 func _on_Map_house_data_request():
 	var map = self.get_child(self.get_child_count()-1)
-	
 	
 	map.spawn_house(house_holder)
 
@@ -50,6 +50,9 @@ func _on_House_upgrade_house(new_house,ENDINGS,ending):
 	
 	anim_player.play("Fade")
 	yield(anim_player, "animation_finished")
+	
+	var player = get_node("Player")
+	player.is_holding = false
 	
 	var map = self.get_child(self.get_child_count()-1)
 	map.queue_free()
@@ -65,20 +68,19 @@ func _on_House_upgrade_house(new_house,ENDINGS,ending):
 			
 		2:
 			current_stage+=1
-			var player = self.get_child(self.get_child_count()-2)
 			player.queue_free()
 			
 			match ending:
 				ENDINGS.WOOD_NORMAL:
 					ending_scene = preload("res://data/scenes/NormalWoodEnding.tscn")
 				ENDINGS.WOOD_NECRONOMICON:
-					print("ENDING: WOOD_NECRONOMICON")
+					ending_scene = preload("res://data/scenes/NecronomiconWoodEnding.tscn")
 				ENDINGS.WOOD_BAT:
 					ending_scene = preload("res://data/scenes/BatWoodEnding.tscn")
 				ENDINGS.ROCK_NORMAL:
 					ending_scene = preload("res://data/scenes/NormalRockEnding.tscn")
 				ENDINGS.ROCK_PICKAXE:
-					print("ENDING: ROCK_PICKAXE")
+					ending_scene = preload("res://data/scenes/PickaxeRockEnding.tscn")
 				ENDINGS.ROCK_MAGIC_HAT:
 					ending_scene = preload("res://data/scenes/MagicHatRockEnding.tscn")
 				ENDINGS.LEAF_NORMAL:
@@ -88,7 +90,7 @@ func _on_House_upgrade_house(new_house,ENDINGS,ending):
 				ENDINGS.LEAF_CLAPBOARD:
 					ending_scene = preload("res://data/scenes/ClapboardLeafEnding.tscn")
 				ENDINGS.MIXED:
-					print("ENDING: MIXED")
+					ending_scene = preload("res://data/scenes/MixedEnding.tscn")
 					
 			ending = ending_scene.instance()
 			self.add_child(ending)
