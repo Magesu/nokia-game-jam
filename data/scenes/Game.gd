@@ -3,7 +3,7 @@ extends Node
 # Variables
 var music:AudioStream = preload("res://data/music/tune.wav")
 
-var current_stage = -1
+var current_stage = -2
 var house_holder
 var map_offset = Vector2(39,7)
 var player_offset = Vector2(40, 27)
@@ -12,25 +12,27 @@ onready var anim_player = get_node("CanvasModulate/AnimationPlayer")
 
 # Scenes
 var player_scene = preload("res://data/scenes/Player.tscn")
+var intro_scene = preload("res://data/scenes/Intro.tscn")
 var stage_0_scene = preload("res://stage0.tscn")
 var stage_1_scene = preload("res://stage1.tscn")
 var stage_2_scene = preload("res://stage2.tscn")
 
 var ending_scene = preload("res://data/scenes/Ending.tscn")
 
-func _ready() -> void:	
+func _ready() -> void:
 	fade_in()
 	#AudioManager.play_music(music)
 	#$UI/AnimationPlayer.play("New Anim")
 
 func _process(_delta):
 	if !anim_player.is_playing():
-		if current_stage == -1:
+		if current_stage == -2:
 			if Input.is_action_just_pressed("player_action"):
 				anim_player.play("Fade")
 				yield(anim_player, "animation_finished")
-				open_stage_0()
 				fade_in()
+				open_intro()
+				current_stage += 1
 				
 		elif current_stage == 3:
 			if Input.is_action_just_pressed("player_action"):
@@ -38,7 +40,7 @@ func _process(_delta):
 				anim_player.play("Fade")
 				yield(anim_player, "animation_finished")
 				ending.queue_free()
-				current_stage = -1
+				current_stage = -2
 			fade_in()
 
 func _on_Map_house_data_request():
@@ -47,7 +49,6 @@ func _on_Map_house_data_request():
 	map.spawn_house(house_holder)
 
 func _on_House_upgrade_house(new_house,ENDINGS,ending):
-	
 	anim_player.play("Fade")
 	yield(anim_player, "animation_finished")
 	
@@ -99,6 +100,19 @@ func _on_House_upgrade_house(new_house,ENDINGS,ending):
 func fade_in():
 	anim_player.play_backwards("Fade")
 	yield(anim_player, "animation_finished")
+
+func open_intro():
+	var intro = intro_scene.instance()
+	self.add_child(intro)
+
+func _on_Intro_intro_finished():
+	anim_player.play("Fade")
+	yield(anim_player, "animation_finished")
+	var intro = get_node("Intro")
+	intro.queue_free()
+	open_stage_0()
+	current_stage += 1
+	fade_in()
 
 func open_stage_0():
 	var player = player_scene.instance()
