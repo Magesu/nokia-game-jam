@@ -41,7 +41,7 @@ func _process(_delta):
 				yield(anim_player, "animation_finished")
 				ending.queue_free()
 				current_stage = -2
-			fade_in()
+				fade_in()
 
 func _on_Map_house_data_request():
 	var map = self.get_child(self.get_child_count()-1)
@@ -111,7 +111,6 @@ func _on_Intro_intro_finished():
 	var intro = get_node("Intro")
 	intro.queue_free()
 	open_stage_0()
-	current_stage += 1
 	fade_in()
 
 func open_stage_0():

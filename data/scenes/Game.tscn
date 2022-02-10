@@ -35,12 +35,13 @@ margin_right = 84.0
 margin_bottom = 48.0
 
 [node name="Label" type="Label" parent="Control"]
-margin_left = 2.0
-margin_right = 77.0
-margin_bottom = 82.0
+margin_right = 84.0
+margin_bottom = 48.0
 text = "Welcome to
 Our game
 [space] pls"
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
