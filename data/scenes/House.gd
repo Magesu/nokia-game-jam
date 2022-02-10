@@ -14,6 +14,7 @@ var storage_box_texture = preload("res://data/sprites/house_storage_box.png")
 
 # Nodes
 onready var sprite = get_node("Sprite")
+onready var collision_box = get_node("CollisionShape2D")
 onready var storage_ui = get_node("Storage")
 onready var game = self.get_parent().get_parent()
 
@@ -49,6 +50,8 @@ func _ready():
 	sprite.offset.x = -sprite.texture.get_width()/2
 	sprite.offset.y = -sprite.texture.get_height()
 	
+	
+	
 	match current_stage:
 		0: storage_limit = 1
 		1: storage_limit = 3
@@ -60,6 +63,11 @@ func _ready():
 		new_storage_box.name = "Slot" + str(i+1)
 		new_storage_box.texture = storage_box_texture
 		storage_ui.add_child(new_storage_box)
+	
+	collision_box.shape.extents.x = max(sprite.texture.get_width()/2,storage_ui.rect_size.x/2)
+	collision_box.shape.extents.y = (sprite.texture.get_height() + storage_ui.rect_size.y)/2
+	
+	collision_box.position.y = sprite.position.y - sprite.texture.get_height() + ((sprite.texture.get_height() + 1 + storage_ui.rect_size.y) / 2)
 	
 	connect("upgrade_house", game, "_on_House_upgrade_house")
 
