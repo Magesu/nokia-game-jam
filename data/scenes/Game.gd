@@ -33,15 +33,6 @@ func _process(_delta):
 				fade_in()
 				open_intro()
 				current_stage += 1
-				
-		elif current_stage == 3:
-			if Input.is_action_just_pressed("player_action"):
-				var ending = self.get_child(self.get_child_count()-1)
-				anim_player.play("Fade")
-				yield(anim_player, "animation_finished")
-				ending.queue_free()
-				current_stage = -2
-				fade_in()
 
 func _on_Map_house_data_request():
 	var map = self.get_child(self.get_child_count()-1)
@@ -106,8 +97,6 @@ func open_intro():
 	self.add_child(intro)
 
 func _on_Intro_intro_finished():
-	anim_player.play("Fade")
-	yield(anim_player, "animation_finished")
 	var intro = get_node("Intro")
 	intro.queue_free()
 	open_stage_0()
