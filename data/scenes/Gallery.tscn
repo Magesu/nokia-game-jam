@@ -1,0 +1,319 @@
+[gd_scene load_steps=26 format=2]
+
+[ext_resource path="res://data/scenes/Gallery.gd" type="Script" id=1]
+[ext_resource path="res://data/sprites/movie_clapboard.png" type="Texture" id=2]
+[ext_resource path="res://data/sprites/rock.png" type="Texture" id=3]
+[ext_resource path="res://data/sprites/box.png" type="Texture" id=4]
+[ext_resource path="res://data/sprites/pickaxe.png" type="Texture" id=5]
+[ext_resource path="res://data/sprites/necronomicon.png" type="Texture" id=6]
+[ext_resource path="res://data/sprites/sinalizer.png" type="Texture" id=7]
+[ext_resource path="res://data/sprites/completely_normal_bat.png" type="Texture" id=8]
+[ext_resource path="res://data/sprites/magic_hat.png" type="Texture" id=9]
+[ext_resource path="res://data/sprites/leaf.png" type="Texture" id=10]
+[ext_resource path="res://data/sprites/wood.png" type="Texture" id=11]
+[ext_resource path="res://data/scenes/Font.tres" type="Theme" id=12]
+[ext_resource path="res://data/sprites/mixed_ending.png" type="Texture" id=13]
+[ext_resource path="res://data/sprites/dwarf_ending.png" type="Texture" id=14]
+[ext_resource path="res://data/sprites/aliens_ending.png" type="Texture" id=15]
+[ext_resource path="res://data/sprites/cthulu_ending.png" type="Texture" id=16]
+[ext_resource path="res://data/sprites/dragon_ending.png" type="Texture" id=17]
+[ext_resource path="res://data/sprites/reality_show_ending.png" type="Texture" id=18]
+[ext_resource path="res://data/sprites/wizard_ending.png" type="Texture" id=19]
+[ext_resource path="res://data/sprites/winchester_ending.png" type="Texture" id=20]
+[ext_resource path="res://data/sprites/yggdrasil_ending.png" type="Texture" id=21]
+[ext_resource path="res://data/sprites/vampire_alternate_ending.png" type="Texture" id=22]
+
+[sub_resource type="Theme" id=1]
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 1, 1, 1, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0, 0, 0, 1 )
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 1, 1, 1, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0, 0, 0, 1 )
+
+[node name="Gallery" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 84.0
+margin_bottom = 48.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+margin_top = 6.0
+margin_right = 84.0
+margin_bottom = 54.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridContainer" type="GridContainer" parent="CenterContainer"]
+margin_top = 6.0
+margin_right = 84.0
+margin_bottom = 42.0
+custom_constants/vseparation = -4
+custom_constants/hseparation = -5
+columns = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mixed" type="Button" parent="CenterContainer/GridContainer"]
+margin_right = 20.0
+margin_bottom = 20.0
+focus_neighbour_left = NodePath("../Pickaxe")
+focus_neighbour_top = NodePath("../../../Return")
+focus_neighbour_right = NodePath("../Necronomicon")
+focus_neighbour_bottom = NodePath("../Rock")
+mouse_filter = 2
+theme = SubResource( 1 )
+custom_styles/focus = SubResource( 2 )
+disabled = true
+button_mask = 0
+icon = ExtResource( 4 )
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Necronomicon" type="Button" parent="CenterContainer/GridContainer"]
+margin_left = 15.0
+margin_right = 37.0
+margin_bottom = 20.0
+focus_neighbour_left = NodePath("../Mixed")
+focus_neighbour_top = NodePath("../Hat")
+focus_neighbour_right = NodePath("../Wood")
+focus_neighbour_bottom = NodePath("../Hat")
+mouse_filter = 2
+theme = SubResource( 1 )
+custom_styles/focus = SubResource( 2 )
+disabled = true
+icon = ExtResource( 6 )
+flat = true
+
+[node name="Wood" type="Button" parent="CenterContainer/GridContainer"]
+margin_left = 32.0
+margin_right = 52.0
+margin_bottom = 20.0
+focus_neighbour_left = NodePath("../Necronomicon")
+focus_neighbour_top = NodePath("../Sinalizer")
+focus_neighbour_right = NodePath("../Bat")
+focus_neighbour_bottom = NodePath("../Sinalizer")
+mouse_filter = 2
+theme = SubResource( 1 )
+custom_styles/focus = SubResource( 2 )
+disabled = true
+icon = ExtResource( 11 )
+flat = true
+
+[node name="Bat" type="Button" parent="CenterContainer/GridContainer"]
+margin_left = 47.0
+margin_right = 69.0
+margin_bottom = 20.0
+focus_neighbour_left = NodePath("../Wood")
+focus_neighbour_top = NodePath("../Leaf")
+focus_neighbour_right = NodePath("../Pickaxe")
+focus_neighbour_bottom = NodePath("../Leaf")
+mouse_filter = 2
+theme = SubResource( 1 )
+custom_styles/focus = SubResource( 2 )
+disabled = true
+icon = ExtResource( 8 )
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Pickaxe" type="Button" parent="CenterContainer/GridContainer"]
+margin_left = 64.0
+margin_right = 84.0
+margin_bottom = 20.0
+focus_neighbour_left = NodePath("../Bat")
+focus_neighbour_top = NodePath("../Movie")
+focus_neighbour_right = NodePath("../Mixed")
+focus_neighbour_bottom = NodePath("../Movie")
+mouse_filter = 2
+theme = SubResource( 1 )
+custom_styles/focus = SubResource( 2 )
+disabled = true
+icon = ExtResource( 5 )
+flat = true
+
+[node name="Rock" type="Button" parent="CenterContainer/GridContainer"]
+margin_top = 16.0
+margin_right = 20.0
+margin_bottom = 36.0
+focus_neighbour_left = NodePath("../Movie")
+focus_neighbour_top = NodePath("../Mixed")
+focus_neighbour_right = NodePath("../Hat")
+focus_neighbour_bottom = NodePath("../../../Return")
+mouse_filter = 2
+theme = SubResource( 1 )
+custom_styles/focus = SubResource( 2 )
+disabled = true
+icon = ExtResource( 3 )
+flat = true
+
+[node name="Hat" type="Button" parent="CenterContainer/GridContainer"]
+margin_left = 15.0
+margin_top = 16.0
+margin_right = 37.0
+margin_bottom = 36.0
+focus_neighbour_left = NodePath("../Rock")
+focus_neighbour_top = NodePath("../Necronomicon")
+focus_neighbour_right = NodePath("../Sinalizer")
+focus_neighbour_bottom = NodePath("../Necronomicon")
+mouse_filter = 2
+theme = SubResource( 1 )
+custom_styles/focus = SubResource( 2 )
+disabled = true
+icon = ExtResource( 9 )
+flat = true
+
+[node name="Sinalizer" type="Button" parent="CenterContainer/GridContainer"]
+margin_left = 32.0
+margin_top = 16.0
+margin_right = 52.0
+margin_bottom = 36.0
+focus_neighbour_left = NodePath("../Hat")
+focus_neighbour_top = NodePath("../Wood")
+focus_neighbour_right = NodePath("../Leaf")
+focus_neighbour_bottom = NodePath("../Wood")
+mouse_filter = 2
+theme = SubResource( 1 )
+custom_styles/focus = SubResource( 2 )
+disabled = true
+icon = ExtResource( 7 )
+flat = true
+
+[node name="Leaf" type="Button" parent="CenterContainer/GridContainer"]
+margin_left = 47.0
+margin_top = 16.0
+margin_right = 69.0
+margin_bottom = 36.0
+focus_neighbour_left = NodePath("../Sinalizer")
+focus_neighbour_top = NodePath("../Bat")
+focus_neighbour_right = NodePath("../Movie")
+focus_neighbour_bottom = NodePath("../Bat")
+mouse_filter = 2
+theme = SubResource( 1 )
+custom_styles/focus = SubResource( 2 )
+disabled = true
+icon = ExtResource( 10 )
+flat = true
+
+[node name="Movie" type="Button" parent="CenterContainer/GridContainer"]
+margin_left = 64.0
+margin_top = 16.0
+margin_right = 84.0
+margin_bottom = 36.0
+focus_neighbour_left = NodePath("../Leaf")
+focus_neighbour_top = NodePath("../Pickaxe")
+focus_neighbour_right = NodePath("../Rock")
+focus_neighbour_bottom = NodePath("../Pickaxe")
+mouse_filter = 2
+theme = SubResource( 1 )
+custom_styles/focus = SubResource( 2 )
+disabled = true
+icon = ExtResource( 2 )
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Return" type="Button" parent="."]
+margin_top = -4.0
+margin_right = 19.0
+margin_bottom = 16.0
+focus_neighbour_top = NodePath("../CenterContainer/GridContainer/Rock")
+focus_neighbour_bottom = NodePath("../CenterContainer/GridContainer/Mixed")
+mouse_filter = 2
+theme = ExtResource( 12 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_styles/focus = SubResource( 3 )
+text = "<"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AliensEnding" type="Sprite" parent="."]
+visible = false
+position = Vector2( 42, 24 )
+texture = ExtResource( 15 )
+
+[node name="CthuluEnding" type="Sprite" parent="."]
+visible = false
+position = Vector2( 42, 24 )
+texture = ExtResource( 16 )
+
+[node name="DragonEnding" type="Sprite" parent="."]
+visible = false
+position = Vector2( 42, 24 )
+texture = ExtResource( 17 )
+
+[node name="DwarfEnding" type="Sprite" parent="."]
+visible = false
+position = Vector2( 42, 24 )
+texture = ExtResource( 14 )
+
+[node name="MixedEnding" type="Sprite" parent="."]
+visible = false
+position = Vector2( 42, 24 )
+texture = ExtResource( 13 )
+
+[node name="RealityShowEnding" type="Sprite" parent="."]
+visible = false
+position = Vector2( 42, 24 )
+texture = ExtResource( 18 )
+
+[node name="VampireAlternateEnding" type="Sprite" parent="."]
+visible = false
+position = Vector2( 42, 24 )
+texture = ExtResource( 22 )
+
+[node name="WinchesterEnding" type="Sprite" parent="."]
+visible = false
+position = Vector2( 42, 24 )
+texture = ExtResource( 20 )
+
+[node name="WizardEnding" type="Sprite" parent="."]
+visible = false
+position = Vector2( 42, 24 )
+texture = ExtResource( 19 )
+
+[node name="YggdrasilEnding" type="Sprite" parent="."]
+visible = false
+position = Vector2( 42, 24 )
+texture = ExtResource( 21 )
+
+[connection signal="pressed" from="CenterContainer/GridContainer/Mixed" to="." method="_on_Mixed_pressed"]
+[connection signal="pressed" from="CenterContainer/GridContainer/Necronomicon" to="." method="_on_Necronomicon_pressed"]
+[connection signal="pressed" from="CenterContainer/GridContainer/Wood" to="." method="_on_Wood_pressed"]
+[connection signal="pressed" from="CenterContainer/GridContainer/Bat" to="." method="_on_Bat_pressed"]
+[connection signal="pressed" from="CenterContainer/GridContainer/Pickaxe" to="." method="_on_Pickaxe_pressed"]
+[connection signal="pressed" from="CenterContainer/GridContainer/Rock" to="." method="_on_Rock_pressed"]
+[connection signal="pressed" from="CenterContainer/GridContainer/Hat" to="." method="_on_Hat_pressed"]
+[connection signal="pressed" from="CenterContainer/GridContainer/Sinalizer" to="." method="_on_Sinalizer_pressed"]
+[connection signal="pressed" from="CenterContainer/GridContainer/Leaf" to="." method="_on_Leaf_pressed"]
+[connection signal="pressed" from="CenterContainer/GridContainer/Movie" to="." method="_on_Movie_pressed"]
+[connection signal="pressed" from="Return" to="." method="_on_Return_pressed"]

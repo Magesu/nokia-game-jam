@@ -3,6 +3,9 @@ extends Node
 # Variables
 var music:AudioStream = preload("res://data/music/tune.wav")
 
+export var menu_sel = 0
+var avail_ending = 0
+
 var current_stage = -2
 var house_holder
 var map_offset = Vector2(0,0)
@@ -13,6 +16,7 @@ onready var anim_player = get_node("CanvasModulate/AnimationPlayer")
 # Scenes
 var player_scene = preload("res://data/scenes/Player.tscn")
 var intro_scene = preload("res://data/scenes/Intro.tscn")
+var gallery_scene = preload("res://data/scenes/Gallery.tscn")
 var stage_0_scene = preload("res://stage0.tscn")
 var stage_1_scene = preload("res://stage1.tscn")
 var stage_2_scene = preload("res://stage2.tscn")
@@ -28,11 +32,29 @@ func _process(_delta):
 	if !anim_player.is_playing():
 		if current_stage == -2:
 			if Input.is_action_just_pressed("player_action"):
-				anim_player.play("Fade")
-				yield(anim_player, "animation_finished")
-				fade_in()
-				open_intro()
-				current_stage += 1
+				if menu_sel == 0:
+					anim_player.play("Fade")
+					yield(anim_player, "animation_finished")
+					fade_in()
+					open_intro()
+					current_stage += 1
+					
+				elif menu_sel == 1:
+					var gallery = gallery_scene.instance()
+					gallery.avail_endings = avail_ending
+					self.add_child(gallery)
+					menu_sel = 10
+					
+				elif menu_sel == 2:
+					get_tree().quit()
+
+			elif Input.is_action_just_pressed("player_down"):
+				if menu_sel < 2:
+					menu_sel += 1
+			
+			elif Input.is_action_just_pressed("player_up"):
+				if menu_sel > 0:
+					menu_sel -= 1
 
 func _on_Map_house_data_request():
 	var map = self.get_child(self.get_child_count()-1)
@@ -65,24 +87,36 @@ func _on_House_upgrade_house(new_house,ENDINGS,ending):
 			match ending:
 				ENDINGS.WOOD_NORMAL:
 					ending_scene = preload("res://data/scenes/NormalWoodEnding.tscn")
+					#encoding to enable the gallery (according to child order on the gallery scene)
+					avail_ending += 1<<2
 				ENDINGS.WOOD_NECRONOMICON:
 					ending_scene = preload("res://data/scenes/NecronomiconWoodEnding.tscn")
+					avail_ending += 1<<1
 				ENDINGS.WOOD_BAT:
 					ending_scene = preload("res://data/scenes/BatWoodEnding.tscn")
+					avail_ending += 1<<3
 				ENDINGS.ROCK_NORMAL:
 					ending_scene = preload("res://data/scenes/NormalRockEnding.tscn")
+					avail_ending += 1<<5
 				ENDINGS.ROCK_PICKAXE:
 					ending_scene = preload("res://data/scenes/PickaxeRockEnding.tscn")
+					avail_ending += 1<<4
 				ENDINGS.ROCK_MAGIC_HAT:
 					ending_scene = preload("res://data/scenes/MagicHatRockEnding.tscn")
+					avail_ending += 1<<6
 				ENDINGS.LEAF_NORMAL:
 					ending_scene = preload("res://data/scenes/NormalLeafEnding.tscn")
+					avail_ending += 1<<8
 				ENDINGS.LEAF_SINALIZER:
 					ending_scene = preload("res://data/scenes/SinalizerLeafEnding.tscn")
+					avail_ending += 1<<7
 				ENDINGS.LEAF_CLAPBOARD:
 					ending_scene = preload("res://data/scenes/ClapboardLeafEnding.tscn")
+					avail_ending += 1<<9
 				ENDINGS.MIXED:
 					ending_scene = preload("res://data/scenes/MixedEnding.tscn")
+					avail_ending += 1<<0
+
 					
 			ending = ending_scene.instance()
 			self.add_child(ending)
