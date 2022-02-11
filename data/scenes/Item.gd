@@ -8,6 +8,9 @@ export(SPECIAL_TYPES) var special_type = SPECIAL_TYPES.NONE
 enum STATES {DROPPED, PICKED_UP, STORED}
 var currentState = STATES.DROPPED
 
+# Nodes
+onready var player = get_parent().get_parent().get_node("Player")
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -21,7 +24,7 @@ func _process(_delta):
 			z_index = 0
 			pass
 		STATES.PICKED_UP:
-			global_position = Vector2(40, 19)
+			global_position = player.global_position + Vector2(1,-8)
 			# Syncs "depth" with the player's
 			z_index = 26
 		STATES.STORED:

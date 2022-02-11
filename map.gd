@@ -26,7 +26,7 @@ func _ready():
 	emit_signal("house_data_request")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 #	if move_cooldown == 0:
 #		if Input.is_action_pressed("player_right"):
 #			position.x -= 1

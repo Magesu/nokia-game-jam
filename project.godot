@@ -84,7 +84,8 @@ one={
 
 2d_physics/layer_1="Player"
 2d_physics/layer_2="House"
-2d_physics/layer_3="Items and material sources"
+2d_physics/layer_3="Material Sources"
+2d_physics/layer_4="items"
 
 [rendering]
 

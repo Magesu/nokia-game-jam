@@ -5,7 +5,7 @@ var music:AudioStream = preload("res://data/music/tune.wav")
 
 var current_stage = -2
 var house_holder
-var map_offset = Vector2(39,7)
+var map_offset = Vector2(0,0)
 var player_offset = Vector2(40, 27)
 
 onready var anim_player = get_node("CanvasModulate/AnimationPlayer")
