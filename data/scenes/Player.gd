@@ -52,7 +52,7 @@ func _process(_delta):
 					house._store(inventory)
 				# Else then places item at player's feet
 				else:
-					inventory.global_position = Vector2(40,32)
+					inventory.global_position = self.global_position + Vector2(1,2)
 					inventory.currentState = inventory.STATES.DROPPED
 				
 				# Turns off is holding and clears inventory
@@ -62,7 +62,6 @@ func _process(_delta):
 				# Detects the objects within range and puts them into an array
 				var objects = []
 				objects = reach.get_overlapping_bodies()
-				print(objects)
 				
 				# Filters out unpickable objects
 				var temp = []
