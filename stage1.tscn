@@ -25,46 +25,50 @@ possible_item_spawn_locations_node_paths = [ NodePath("Item Spawn 1"), NodePath(
 
 [node name="Park" type="Sprite" parent="."]
 texture = ExtResource( 1 )
+centered = false
 
 [node name="Stone Pile" parent="." instance=ExtResource( 8 )]
-position = Vector2( -16, 43 )
+position = Vector2( 187, 170 )
 
 [node name="Tree" parent="." instance=ExtResource( 6 )]
-position = Vector2( 4, 72 )
+position = Vector2( 207, 199 )
 
 [node name="Bush" parent="." instance=ExtResource( 9 )]
-position = Vector2( 25, 45 )
+position = Vector2( 228, 172 )
 
 [node name="Stone Pile2" parent="." instance=ExtResource( 8 )]
-position = Vector2( -48, 56 )
+position = Vector2( 155, 183 )
 
 [node name="Tree2" parent="." instance=ExtResource( 6 )]
-position = Vector2( -31, -38 )
+position = Vector2( 172, 89 )
 
 [node name="Bush2" parent="." instance=ExtResource( 9 )]
-position = Vector2( -55, 8 )
+position = Vector2( 148, 135 )
 
 [node name="Stone Pile3" parent="." instance=ExtResource( 8 )]
-position = Vector2( -82, 38 )
+position = Vector2( 121, 165 )
 
 [node name="Bush3" parent="." instance=ExtResource( 9 )]
-position = Vector2( 64, 14 )
+position = Vector2( 267, 141 )
 
 [node name="Tree3" parent="." instance=ExtResource( 6 )]
-position = Vector2( -109, 66 )
+position = Vector2( 94, 193 )
 
 [node name="Item Spawn 1" type="Sprite" parent="."]
-position = Vector2( -80, -31 )
+position = Vector2( 123, 96 )
 texture = SubResource( 1 )
 
 [node name="Item Spawn 2" type="Sprite" parent="."]
-position = Vector2( 70, -64 )
+position = Vector2( 273, 63 )
 texture = SubResource( 2 )
 
 [node name="Item Spawn 3" type="Sprite" parent="."]
-position = Vector2( 70, 66 )
+position = Vector2( 273, 193 )
 texture = SubResource( 3 )
 
 [node name="Item Spawn 4" type="Sprite" parent="."]
-position = Vector2( -110, 25 )
+position = Vector2( 93, 152 )
 texture = SubResource( 4 )
+
+[node name="House Pos" type="Position2D" parent="."]
+position = Vector2( 209, 121 )

@@ -14,60 +14,64 @@ possible_item_spawn_locations_node_paths = [ NodePath("Item Spawn 1"), NodePath(
 
 [node name="Park" type="Sprite" parent="."]
 texture = ExtResource( 1 )
+centered = false
 
 [node name="Stone Pile" parent="." instance=ExtResource( 8 )]
-position = Vector2( -16, 43 )
+position = Vector2( 155, 169 )
 
 [node name="Tree" parent="." instance=ExtResource( 6 )]
-position = Vector2( 4, 72 )
+position = Vector2( 175, 198 )
 
 [node name="Bush" parent="." instance=ExtResource( 9 )]
-position = Vector2( 25, 45 )
+position = Vector2( 196, 171 )
 
 [node name="Stone Pile2" parent="." instance=ExtResource( 8 )]
-position = Vector2( -48, 56 )
+position = Vector2( 123, 182 )
 
 [node name="Tree2" parent="." instance=ExtResource( 6 )]
-position = Vector2( -31, -38 )
+position = Vector2( 140, 88 )
 
 [node name="Bush2" parent="." instance=ExtResource( 9 )]
-position = Vector2( -55, 8 )
+position = Vector2( 116, 134 )
 
 [node name="Tree3" parent="." instance=ExtResource( 6 )]
-position = Vector2( 72, 9 )
+position = Vector2( 243, 135 )
 
 [node name="Tree4" parent="." instance=ExtResource( 6 )]
-position = Vector2( 74, 55 )
+position = Vector2( 245, 181 )
 
 [node name="Tree5" parent="." instance=ExtResource( 6 )]
-position = Vector2( 120, 42 )
+position = Vector2( 291, 168 )
 
 [node name="Stone Pile3" parent="." instance=ExtResource( 8 )]
-position = Vector2( 108, 80 )
+position = Vector2( 279, 206 )
 
 [node name="Stone Pile4" parent="." instance=ExtResource( 8 )]
-position = Vector2( -104, 60 )
+position = Vector2( 67, 186 )
 
 [node name="Stone Pile5" parent="." instance=ExtResource( 8 )]
-position = Vector2( -108, 16 )
+position = Vector2( 63, 142 )
 
 [node name="Bush3" parent="." instance=ExtResource( 9 )]
-position = Vector2( 100, -43 )
+position = Vector2( 271, 83 )
 
 [node name="Bush4" parent="." instance=ExtResource( 9 )]
-position = Vector2( 124, -7 )
+position = Vector2( 295, 119 )
 
 [node name="Bush5" parent="." instance=ExtResource( 9 )]
-position = Vector2( 64, -76 )
+position = Vector2( 235, 50 )
 
 [node name="Item Spawn 1" type="Sprite" parent="."]
-position = Vector2( -86, -61 )
+position = Vector2( 85, 65 )
 texture = ExtResource( 3 )
 
 [node name="Item Spawn 2" type="Sprite" parent="."]
-position = Vector2( 56, -31 )
+position = Vector2( 227, 95 )
 texture = ExtResource( 3 )
 
 [node name="Item Spawn 3" type="Sprite" parent="."]
-position = Vector2( 49, 27 )
+position = Vector2( 220, 153 )
 texture = ExtResource( 3 )
+
+[node name="House Pos" type="Position2D" parent="."]
+position = Vector2( 169, 118 )

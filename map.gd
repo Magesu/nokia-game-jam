@@ -13,6 +13,9 @@ export(Array,NodePath) var possible_item_spawn_locations_node_paths = []
 var possible_item_spawn_locations = []
 var item_spawn_pos
 
+# Nodes
+onready var house_pos = get_node("House Pos")
+
 # Scenes
 var house_scene = preload("res://data/scenes/House.tscn")
 var item_scene
@@ -65,7 +68,7 @@ func spawn_house(type):
 	var house = house_scene.instance()
 	house.current_type = type
 	house.current_stage = stage
-	house.position = Vector2(0,0)
+	house.position = house_pos.position
 	
 	self.add_child(house)
 	

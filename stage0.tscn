@@ -11,12 +11,16 @@ script = ExtResource( 2 )
 
 [node name="Park" type="Sprite" parent="."]
 texture = ExtResource( 1 )
+centered = false
 
 [node name="Stone Pile" parent="." instance=ExtResource( 8 )]
-position = Vector2( -16, 43 )
+position = Vector2( 163, 174 )
 
 [node name="Tree" parent="." instance=ExtResource( 6 )]
-position = Vector2( 4, 72 )
+position = Vector2( 183, 203 )
 
 [node name="Bush" parent="." instance=ExtResource( 9 )]
-position = Vector2( 25, 45 )
+position = Vector2( 204, 176 )
+
+[node name="House Pos" type="Position2D" parent="."]
+position = Vector2( 182, 125 )

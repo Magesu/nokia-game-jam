@@ -8,19 +8,21 @@
 [ext_resource path="res://data/scenes/Bush.tscn" type="PackedScene" id=9]
 
 [node name="Map" type="Node2D"]
+z_index = 4096
 script = ExtResource( 2 )
 
 [node name="Park" type="Sprite" parent="."]
 texture = ExtResource( 1 )
+centered = false
 
 [node name="Stone Pile" parent="." instance=ExtResource( 8 )]
-position = Vector2( -16, 43 )
+position = Vector2( 164, 199 )
 
 [node name="Tree" parent="." instance=ExtResource( 6 )]
-position = Vector2( 7, 39 )
+position = Vector2( 187, 195 )
 
 [node name="Material Source" parent="." instance=ExtResource( 7 )]
-position = Vector2( 74, 2 )
+position = Vector2( 254, 158 )
 
 [node name="Bush" parent="." instance=ExtResource( 9 )]
-position = Vector2( 25, 45 )
+position = Vector2( 205, 201 )
