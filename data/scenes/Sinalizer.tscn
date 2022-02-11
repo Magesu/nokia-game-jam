@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3, 7 )
 
-[node name="Sinalizer" type="Area2D" groups=[
+[node name="Sinalizer" type="KinematicBody2D" groups=[
 "item",
 ]]
 collision_layer = 4

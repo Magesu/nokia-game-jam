@@ -1,7 +1,9 @@
-extends Area2D
+extends KinematicBody2D
 
 
 # Declare member variables here. Examples:
+export var speed = 40
+
 var is_holding = false
 var inventory
 
@@ -20,12 +22,25 @@ func _process(_delta):
 	# Makes the order of drawing in the screen dependant on the Y coordinate to give the impression of depth
 	z_index = int(position.y)
 	
+	# Player movement
+	var velocity = Vector2.ZERO # The player's movement vector.
+	if Input.is_action_pressed("player_right"):
+		velocity.x += speed
+	if Input.is_action_pressed("player_left"):
+		velocity.x -= speed
+	if Input.is_action_pressed("player_down"):
+		velocity.y += speed
+	if Input.is_action_pressed("player_up"):
+		velocity.y -= speed
+
+	move_and_slide(velocity)
+	
 	if !fade_player.is_playing():
 		if Input.is_action_just_pressed("player_action"):
 			if is_holding:
 				# Detects if the house is nearby and stores the house node into a variable
 				var house
-				var objects = reach.get_overlapping_areas()
+				var objects = reach.get_overlapping_bodies()
 				
 				for object in objects:
 					if object.is_in_group("house"):
@@ -46,7 +61,8 @@ func _process(_delta):
 			else: 
 				# Detects the objects within range and puts them into an array
 				var objects = []
-				objects = reach.get_overlapping_areas()
+				objects = reach.get_overlapping_bodies()
+				print(objects)
 				
 				# Filters out unpickable objects
 				var temp = []

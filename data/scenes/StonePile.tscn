@@ -6,7 +6,9 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 6.5 )
 
-[node name="Stone Pile" type="Area2D" groups=["material source"]]
+[node name="Stone Pile" type="KinematicBody2D" groups=[
+"material source",
+]]
 collision_layer = 4
 script = ExtResource( 2 )
 material_scene_path = "res://data/scenes/Rock.tscn"

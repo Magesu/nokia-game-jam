@@ -1,4 +1,4 @@
-extends Area2D
+extends KinematicBody2D
 
 # Declare member variables here.
 

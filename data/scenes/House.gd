@@ -1,4 +1,4 @@
-extends Area2D
+extends KinematicBody2D
 
 # Declare member variables here. Examples:
 enum TYPES {HOMELESS, WOOD_CABIN, WOODEN_MANSION, TEMPLE, ROCK_HUT, STONE_TOWER, MINE, LEAF_BUNGALOW, TREE_HOUSE, ALIEN_PYRAMID}
@@ -64,10 +64,10 @@ func _ready():
 		new_storage_box.texture = storage_box_texture
 		storage_ui.add_child(new_storage_box)
 	
-	collision_box.shape.extents.x = max(sprite.texture.get_width()/2,storage_ui.rect_size.x/2)
-	collision_box.shape.extents.y = (sprite.texture.get_height() + storage_ui.rect_size.y)/2
+	collision_box.shape.extents.x = sprite.texture.get_width()/2
+	collision_box.shape.extents.y = sprite.texture.get_height()/2
 	
-	collision_box.position.y = sprite.position.y - sprite.texture.get_height() + ((sprite.texture.get_height() + 1 + storage_ui.rect_size.y) / 2)
+	collision_box.position.y = sprite.position.y - (sprite.texture.get_height() / 2)
 	
 	connect("upgrade_house", game, "_on_House_upgrade_house")
 

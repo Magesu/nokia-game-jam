@@ -44,21 +44,22 @@ func _process(delta):
 #	move_cooldown -= delta * speed;
 #	if move_cooldown < 0:
 #		move_cooldown = 0;
-	var velocity = Vector2.ZERO # The player's movement vector.
-	if Input.is_action_pressed("player_right"):
-		velocity.x -= speed
-	if Input.is_action_pressed("player_left"):
-		velocity.x += speed
-	if Input.is_action_pressed("player_down"):
-		velocity.y -= speed
-	if Input.is_action_pressed("player_up"):
-		velocity.y += speed
-		
-	position += velocity * delta
-	position.x = round(position.x)
-	position.y = round(position.y)
-	position.x = clamp(position.x, -width+42, width+42)
-	position.y = clamp(position.y, -height+24, height+24)
+#	var velocity = Vector2.ZERO # The player's movement vector.
+#	if Input.is_action_pressed("player_right"):
+#		velocity.x -= speed
+#	if Input.is_action_pressed("player_left"):
+#		velocity.x += speed
+#	if Input.is_action_pressed("player_down"):
+#		velocity.y -= speed
+#	if Input.is_action_pressed("player_up"):
+#		velocity.y += speed
+#
+#	position += velocity * delta
+#	position.x = round(position.x)
+#	position.y = round(position.y)
+#	position.x = clamp(position.x, -width+42, width+42)
+#	position.y = clamp(position.y, -height+24, height+24)
+	pass
 
 func spawn_house(type):
 	var house = house_scene.instance()

@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4, 3.5 )
 
-[node name="Clapboard" type="Area2D" groups=[
+[node name="Clapboard" type="KinematicBody2D" groups=[
 "item",
 ]]
 collision_layer = 4

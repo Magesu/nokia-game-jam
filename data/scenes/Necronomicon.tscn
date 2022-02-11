@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5, 5 )
 
-[node name="Necronomicon" type="Area2D" groups=[
+[node name="Necronomicon" type="KinematicBody2D" groups=[
 "item",
 ]]
 collision_layer = 4
