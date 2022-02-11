@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://data/scenes/Font.tres" type="Theme" id=1]
+
+[node name="Ending" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 84.0
+margin_bottom = 48.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 52.0
+margin_bottom = 24.0
+theme = ExtResource( 1 )
+text = "nyehehe"
+__meta__ = {
+"_edit_use_anchors_": false
+}
