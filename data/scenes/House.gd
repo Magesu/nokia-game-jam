@@ -45,10 +45,10 @@ func _ready():
 			collision_box.position = Vector2(0,-6)
 		TYPES.TEMPLE:
 			sprite.texture = load("res://data/sprites/temple.png")
-			var temple_shape = ConvexPolygonShape2D.new()
-			temple_shape.points = [Vector2(32,7),Vector2(32,4),Vector2(23,0),Vector2(23,-10),Vector2(-23,-10), Vector2(-23,0), Vector2(-32,4), Vector2(-32,7)]
-			collision_box = temple_shape
-			collision_box.position = Vector2(0,-7)
+			var temple_shape = RectangleShape2D.new()
+			temple_shape.extents = Vector2(23,8)
+			collision_box.shape = temple_shape
+			collision_box.position = Vector2(0,-8)
 		TYPES.ROCK_HUT:
 			sprite.texture = load("res://data/sprites/rock_hut.png")
 			var rock_rectangle = RectangleShape2D.new()
@@ -63,10 +63,10 @@ func _ready():
 			collision_box.position = Vector2(0,-9)
 		TYPES.MINE:
 			sprite.texture = load("res://data/sprites/mine.png")
-			var mountain_shape = ConvexPolygonShape2D.new()
-			mountain_shape.points = [Vector2(32,3),Vector2(29,-10),Vector2(-29,-10),Vector2(-32,3),Vector2(-6,3),Vector2(-5,6),Vector2(3,6),Vector2(4,3)]
+			var mountain_shape = RectangleShape2D.new()
+			mountain_shape.extents = Vector2(29,8)
 			collision_box.shape = mountain_shape
-			collision_box.position = Vector2(0,-10)
+			collision_box.position = Vector2(0,-11)
 		TYPES.LEAF_BUNGALOW:
 			sprite.texture = load("res://data/sprites/leaf_bungalow.png")
 			var bungalow_rectangle = RectangleShape2D.new()

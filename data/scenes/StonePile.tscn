@@ -13,10 +13,10 @@ collision_layer = 4
 script = ExtResource( 2 )
 material_scene_path = "res://data/scenes/Rock.tscn"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -1 )
-shape = SubResource( 1 )
-
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, -3 )
 texture = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -1 )
+shape = SubResource( 1 )

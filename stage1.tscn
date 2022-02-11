@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://data/sprites/park.png" type="Texture" id=1]
 [ext_resource path="res://map.gd" type="Script" id=2]
@@ -17,6 +17,18 @@ load_path = "res://.import/fairy_ring.png-5b00137937b261151272dc0e68b6d60e.stex"
 
 [sub_resource type="StreamTexture" id=4]
 load_path = "res://.import/fairy_ring.png-5b00137937b261151272dc0e68b6d60e.stex"
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 142, 2 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 142, 2 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 2, 102 )
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 2, 102 )
 
 [node name="Map" type="Node2D"]
 script = ExtResource( 2 )
@@ -72,3 +84,27 @@ texture = SubResource( 4 )
 
 [node name="House Pos" type="Position2D" parent="."]
 position = Vector2( 209, 121 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2( 180, 30 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource( 5 )
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2( 180, 230 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+shape = SubResource( 6 )
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2( 40, 130 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+shape = SubResource( 7 )
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+position = Vector2( 320, 130 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+shape = SubResource( 8 )

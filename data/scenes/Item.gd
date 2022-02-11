@@ -26,7 +26,7 @@ func _process(_delta):
 		STATES.PICKED_UP:
 			global_position = player.global_position + Vector2(1,-8)
 			# Syncs "depth" with the player's
-			z_index = int(global_position.y)
+			z_index = int(player.global_position.y)
 		STATES.STORED:
 			# Syncs "depth" with the map's
 			z_index = 0
