@@ -87,7 +87,6 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	sprite.z_index = int(collision_box.global_position.y)
-	print(sprite.z_index)
 
 func _store(item):
 	# Checks if there's space at home, if there is add item to storage and move it to the boxes
