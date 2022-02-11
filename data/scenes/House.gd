@@ -27,44 +27,64 @@ func _ready():
 	match current_type:
 		TYPES.HOMELESS:
 			sprite.texture = load("res://data/sprites/bench.png")
-			collision_box.shape.extents = Vector2(11,6)
+			var bench_rectangle = RectangleShape2D.new()
+			bench_rectangle.extents = Vector2(11,6)
+			collision_box.shape = bench_rectangle
 			collision_box.position = Vector2(3,-19)
 		TYPES.WOOD_CABIN:
 			sprite.texture = load("res://data/sprites/wood_cabin.png")
-			collision_box.shape.extents = Vector2(20.5,9)
-			collision_box.position = Vector2(0.5,-10)
+			var cabin_rectangle = RectangleShape2D.new()
+			cabin_rectangle.extents = Vector2(20.5,7)
+			collision_box.shape = cabin_rectangle
+			collision_box.position = Vector2(0.5,-8)
 		TYPES.WOODEN_MANSION:
 			sprite.texture = load("res://data/sprites/wooden_mansion.png")
-			collision_box.shape.extents = Vector2(30,5)
+			var mansion_rectangle = RectangleShape2D.new()
+			mansion_rectangle.extents = Vector2(30,5)
+			collision_box.shape = mansion_rectangle
 			collision_box.position = Vector2(0,-6)
 		TYPES.TEMPLE:
 			sprite.texture = load("res://data/sprites/temple.png")
-			collision_box.shape.extents = Vector2(23,8)
-			collision_box.position = Vector2(0,-8)
+			var temple_shape = ConvexPolygonShape2D.new()
+			temple_shape.points = [Vector2(32,7),Vector2(32,4),Vector2(23,0),Vector2(23,-10),Vector2(-23,-10), Vector2(-23,0), Vector2(-32,4), Vector2(-32,7)]
+			collision_box = temple_shape
+			collision_box.position = Vector2(0,-7)
 		TYPES.ROCK_HUT:
 			sprite.texture = load("res://data/sprites/rock_hut.png")
-			collision_box.shape.extents = Vector2(22,8)
+			var rock_rectangle = RectangleShape2D.new()
+			rock_rectangle.extents = Vector2(22,8)
+			collision_box.shape = rock_rectangle
 			collision_box.position = Vector2(0,-9)
 		TYPES.STONE_TOWER:
 			sprite.texture = load("res://data/sprites/stone_tower.png")
-			collision_box.shape.extents = Vector2(12,7)
+			var stone_rectangle = RectangleShape2D.new()
+			stone_rectangle.extents = Vector2(12,7)
+			collision_box.shape = stone_rectangle
 			collision_box.position = Vector2(0,-9)
 		TYPES.MINE:
 			sprite.texture = load("res://data/sprites/mine.png")
-			collision_box.shape.extents = Vector2(30,9)
+			var mountain_shape = ConvexPolygonShape2D.new()
+			mountain_shape.points = [Vector2(32,3),Vector2(29,-10),Vector2(-29,-10),Vector2(-32,3),Vector2(-6,3),Vector2(-5,6),Vector2(3,6),Vector2(4,3)]
+			collision_box.shape = mountain_shape
 			collision_box.position = Vector2(0,-10)
 		TYPES.LEAF_BUNGALOW:
 			sprite.texture = load("res://data/sprites/leaf_bungalow.png")
-			collision_box.shape.extents = Vector2(20.5,7)
+			var bungalow_rectangle = RectangleShape2D.new()
+			bungalow_rectangle.extents = Vector2(20.5,7)
+			collision_box.shape = bungalow_rectangle
 			collision_box.position = Vector2(0.5,-7)
 		TYPES.TREE_HOUSE:
 			sprite.texture = load("res://data/sprites/tree_house.png")
-			collision_box.shape.extents = Vector2(12.5,9)
-			collision_box.position = Vector2(-0.5,-18)
+			var tree_shape = ConvexPolygonShape2D.new()
+			tree_shape.points = [Vector2(4,3),Vector2(5,5),Vector2(16,3),Vector2(13,0),Vector2(11,-11),Vector2(-11,-11),Vector2(-13,-3),Vector2(-16,0),Vector2(-17,3),Vector2(-5,5),Vector2(-4,3)]
+			collision_box.shape = tree_shape
+			collision_box.position = Vector2(0,-13)
 		TYPES.ALIEN_PYRAMID:
 			sprite.texture = load("res://data/sprites/alien_pyramid.png")
-			collision_box.shape.extents = Vector2(22,9)
-			collision_box.position = Vector2(0,-13)
+			var pyramid_base = ConvexPolygonShape2D.new()
+			pyramid_base.points = [Vector2(0,8),Vector2(31,0),Vector2(0,-8),Vector2(-31,0)]
+			collision_box.shape = pyramid_base
+			collision_box.position = Vector2(0,-10)
 	
 	# MOAR MATH for adjusting sprite position
 	sprite.offset.x = -sprite.texture.get_width()/2
