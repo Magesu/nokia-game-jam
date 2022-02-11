@@ -75,10 +75,10 @@ func _ready():
 			collision_box.position = Vector2(0.5,-7)
 		TYPES.TREE_HOUSE:
 			sprite.texture = load("res://data/sprites/tree_house.png")
-			var tree_shape = ConvexPolygonShape2D.new()
-			tree_shape.points = [Vector2(4,3),Vector2(5,5),Vector2(16,3),Vector2(13,0),Vector2(11,-11),Vector2(-11,-11),Vector2(-13,-3),Vector2(-16,0),Vector2(-17,3),Vector2(-5,5),Vector2(-4,3)]
+			var tree_shape = RectangleShape2D.new()
+			tree_shape.extents = Vector2(12.5,8)
 			collision_box.shape = tree_shape
-			collision_box.position = Vector2(0,-13)
+			collision_box.position = Vector2(-0.5,-18)
 		TYPES.ALIEN_PYRAMID:
 			sprite.texture = load("res://data/sprites/alien_pyramid.png")
 			var pyramid_base = ConvexPolygonShape2D.new()
