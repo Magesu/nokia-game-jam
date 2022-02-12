@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://data/sprites/park.png" type="Texture" id=1]
 [ext_resource path="res://map.gd" type="Script" id=2]
@@ -7,16 +7,19 @@
 [ext_resource path="res://data/scenes/StonePile.tscn" type="PackedScene" id=8]
 [ext_resource path="res://data/scenes/Bush.tscn" type="PackedScene" id=9]
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="StreamTexture" id=1]
+load_path = "res://.import/fairy_ring.png-5b00137937b261151272dc0e68b6d60e.stex"
+
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 142, 2 )
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 142, 2 )
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 2, 102 )
 
-[sub_resource type="RectangleShape2D" id=8]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 2, 102 )
 
 [node name="Map" type="Node2D"]
@@ -29,85 +32,89 @@ texture = ExtResource( 1 )
 centered = false
 
 [node name="Stone Pile" parent="." instance=ExtResource( 8 )]
-position = Vector2( 155, 169 )
+position = Vector2( 291, 67 )
 
 [node name="Tree" parent="." instance=ExtResource( 6 )]
-position = Vector2( 175, 198 )
+position = Vector2( 255, 52 )
 
 [node name="Bush" parent="." instance=ExtResource( 9 )]
-position = Vector2( 196, 171 )
+position = Vector2( 239, 194 )
 
 [node name="Stone Pile2" parent="." instance=ExtResource( 8 )]
-position = Vector2( 123, 182 )
+position = Vector2( 110, 50 )
 
 [node name="Tree2" parent="." instance=ExtResource( 6 )]
-position = Vector2( 140, 88 )
+position = Vector2( 67, 76 )
 
 [node name="Bush2" parent="." instance=ExtResource( 9 )]
-position = Vector2( 116, 134 )
+position = Vector2( 214, 72 )
 
 [node name="Tree3" parent="." instance=ExtResource( 6 )]
-position = Vector2( 243, 135 )
+position = Vector2( 64, 119 )
 
 [node name="Tree4" parent="." instance=ExtResource( 6 )]
-position = Vector2( 245, 181 )
+position = Vector2( 299, 197 )
 
 [node name="Tree5" parent="." instance=ExtResource( 6 )]
-position = Vector2( 291, 168 )
+position = Vector2( 289, 152 )
 
 [node name="Stone Pile3" parent="." instance=ExtResource( 8 )]
-position = Vector2( 279, 206 )
+position = Vector2( 265, 211 )
 
 [node name="Stone Pile4" parent="." instance=ExtResource( 8 )]
 position = Vector2( 67, 186 )
 
 [node name="Stone Pile5" parent="." instance=ExtResource( 8 )]
-position = Vector2( 63, 142 )
+position = Vector2( 227, 125 )
 
 [node name="Bush3" parent="." instance=ExtResource( 9 )]
-position = Vector2( 271, 83 )
+position = Vector2( 116, 209 )
 
 [node name="Bush4" parent="." instance=ExtResource( 9 )]
-position = Vector2( 295, 119 )
+position = Vector2( 213, 141 )
 
 [node name="Bush5" parent="." instance=ExtResource( 9 )]
-position = Vector2( 235, 50 )
+position = Vector2( 96, 87 )
 
 [node name="Item Spawn 1" type="Sprite" parent="."]
-position = Vector2( 85, 65 )
+position = Vector2( 80, 60 )
 texture = ExtResource( 3 )
 
 [node name="Item Spawn 2" type="Sprite" parent="."]
-position = Vector2( 227, 95 )
+position = Vector2( 250, 82 )
 texture = ExtResource( 3 )
 
 [node name="Item Spawn 3" type="Sprite" parent="."]
-position = Vector2( 220, 153 )
+position = Vector2( 268, 177 )
 texture = ExtResource( 3 )
 
+[node name="Item Spawn 4" type="Sprite" parent="."]
+position = Vector2( 91, 206 )
+texture = SubResource( 1 )
+
 [node name="House Pos" type="Position2D" parent="."]
-position = Vector2( 169, 118 )
+position = Vector2( 153, 121 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2( 180, 30 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource( 5 )
+shape = SubResource( 2 )
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
 position = Vector2( 180, 230 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-shape = SubResource( 6 )
+shape = SubResource( 3 )
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="."]
 position = Vector2( 40, 130 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
-shape = SubResource( 7 )
+shape = SubResource( 4 )
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="."]
 position = Vector2( 320, 130 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
-shape = SubResource( 8 )
+shape = SubResource( 5 )

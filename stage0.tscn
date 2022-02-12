@@ -6,16 +6,16 @@
 [ext_resource path="res://data/scenes/StonePile.tscn" type="PackedScene" id=8]
 [ext_resource path="res://data/scenes/Bush.tscn" type="PackedScene" id=9]
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 142, 2 )
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 142, 2 )
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 2, 102 )
 
-[sub_resource type="RectangleShape2D" id=8]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 2, 102 )
 
 [node name="Map" type="Node2D"]
@@ -26,37 +26,37 @@ texture = ExtResource( 1 )
 centered = false
 
 [node name="Stone Pile" parent="." instance=ExtResource( 8 )]
-position = Vector2( 163, 174 )
+position = Vector2( 213, 185 )
 
 [node name="Tree" parent="." instance=ExtResource( 6 )]
-position = Vector2( 183, 203 )
+position = Vector2( 228, 167 )
 
 [node name="Bush" parent="." instance=ExtResource( 9 )]
-position = Vector2( 204, 176 )
+position = Vector2( 150, 166 )
 
 [node name="House Pos" type="Position2D" parent="."]
-position = Vector2( 182, 125 )
+position = Vector2( 182, 127 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2( 180, 30 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource( 5 )
+shape = SubResource( 1 )
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
 position = Vector2( 180, 230 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-shape = SubResource( 6 )
+shape = SubResource( 2 )
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="."]
 position = Vector2( 40, 130 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
-shape = SubResource( 7 )
+shape = SubResource( 3 )
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="."]
 position = Vector2( 320, 130 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
-shape = SubResource( 8 )
+shape = SubResource( 4 )

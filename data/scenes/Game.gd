@@ -25,7 +25,7 @@ var ending_scene = preload("res://data/scenes/Ending.tscn")
 
 func _ready() -> void:
 	fade_in()
-	#AudioManager.play_music(music)
+	AudioManager.play_music(music)
 	#$UI/AnimationPlayer.play("New Anim")
 
 func _process(_delta):
