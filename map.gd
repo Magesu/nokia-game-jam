@@ -15,6 +15,7 @@ var item_spawn_pos
 
 # Nodes
 onready var house_pos = get_node("House Pos")
+onready var player = get_parent().get_node("Player")
 
 # Scenes
 var house_scene = preload("res://data/scenes/House.tscn")
@@ -26,42 +27,13 @@ signal house_data_request
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	self.connect("house_data_request", self.get_parent(), "_on_Map_house_data_request")
+	
+	player.global_position = house_pos.global_position + Vector2(0, 11)
+	
 	emit_signal("house_data_request")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-#	if move_cooldown == 0:
-#		if Input.is_action_pressed("player_right"):
-#			position.x -= 1
-#			move_cooldown = 1
-#		if Input.is_action_pressed("player_left"):
-#			position.x += 1
-#			move_cooldown = 1
-#		if Input.is_action_pressed("player_down"):
-#			position.y -= 1
-#			move_cooldown = 1
-#		if Input.is_action_pressed("player_up"):
-#			position.y += 1
-#			move_cooldown = 1
-#
-#	move_cooldown -= delta * speed;
-#	if move_cooldown < 0:
-#		move_cooldown = 0;
-#	var velocity = Vector2.ZERO # The player's movement vector.
-#	if Input.is_action_pressed("player_right"):
-#		velocity.x -= speed
-#	if Input.is_action_pressed("player_left"):
-#		velocity.x += speed
-#	if Input.is_action_pressed("player_down"):
-#		velocity.y -= speed
-#	if Input.is_action_pressed("player_up"):
-#		velocity.y += speed
-#
-#	position += velocity * delta
-#	position.x = round(position.x)
-#	position.y = round(position.y)
-#	position.x = clamp(position.x, -width+42, width+42)
-#	position.y = clamp(position.y, -height+24, height+24)
 	pass
 
 func spawn_house(type):

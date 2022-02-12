@@ -34,4 +34,3 @@ func _process(_delta):
 				self.queue_free()
 				game.current_stage = -2
 				fade_player.play_backwards("Fade")
-				yield(fade_player, "animation_finished")

@@ -149,16 +149,13 @@ func _on_Intro_intro_finished():
 
 func open_stage_0():
 	var player = player_scene.instance()
+	self.add_child(player)
 	
 	house_holder = 0 # TYPES.HOMELESS
 	current_stage += 1
 	var stage_0 = stage_0_scene.instance()
-	
-	player.global_position = stage_0.get_node("House Pos").global_position + Vector2(0,11)
-	
-	self.add_child(player)
 	self.add_child(stage_0)
-	
+
 func open_stage_1(new_house):
 	house_holder = new_house
 	current_stage += 1
@@ -166,15 +163,9 @@ func open_stage_1(new_house):
 	stage_1.position = map_offset
 	self.add_child(stage_1)
 	
-	var player = get_node("Player")
-	player.global_position = stage_1.get_node("House Pos").global_position + Vector2(0,11)
-	
 func open_stage_2(new_house):
 	house_holder = new_house
 	current_stage += 1
 	var stage_2 = stage_2_scene.instance()
 	stage_2.position = map_offset
 	self.add_child(stage_2)
-	
-	var player = get_node("Player")
-	player.global_position = stage_2.get_node("House Pos").global_position + Vector2(0,11)
