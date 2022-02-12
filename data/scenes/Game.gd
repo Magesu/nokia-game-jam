@@ -4,7 +4,7 @@ extends Node
 var music:AudioStream = preload("res://data/music/tune.wav")
 
 export var menu_sel = 0
-var avail_ending = 0
+var avail_ending = 732
 
 var current_stage = -2
 var house_holder
