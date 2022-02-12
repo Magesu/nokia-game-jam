@@ -8,7 +8,7 @@ var upgrade:AudioStream = preload("res://data/sfx/upgrade.wav")
 var ending_jingle:AudioStream = preload("res://data/sfx/ending_jingle.wav")
 
 export var menu_sel = 0
-var avail_ending = 732
+var avail_ending = 0
 
 var current_stage = -2
 var house_holder

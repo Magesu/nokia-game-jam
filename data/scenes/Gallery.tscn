@@ -256,55 +256,48 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AliensEnding" type="Sprite" parent="."]
-visible = false
+[node name="Arts" type="Node2D" parent="."]
 position = Vector2( 42, 24 )
-texture = ExtResource( 15 )
 
-[node name="CthuluEnding" type="Sprite" parent="."]
+[node name="MixedEnding" type="Sprite" parent="Arts"]
 visible = false
-position = Vector2( 42, 24 )
-texture = ExtResource( 16 )
-
-[node name="DragonEnding" type="Sprite" parent="."]
-visible = false
-position = Vector2( 42, 24 )
-texture = ExtResource( 17 )
-
-[node name="DwarfEnding" type="Sprite" parent="."]
-visible = false
-position = Vector2( 42, 24 )
-texture = ExtResource( 14 )
-
-[node name="MixedEnding" type="Sprite" parent="."]
-visible = false
-position = Vector2( 42, 24 )
 texture = ExtResource( 13 )
 
-[node name="RealityShowEnding" type="Sprite" parent="."]
+[node name="CthuluEnding" type="Sprite" parent="Arts"]
 visible = false
-position = Vector2( 42, 24 )
-texture = ExtResource( 18 )
+texture = ExtResource( 16 )
 
-[node name="VampireAlternateEnding" type="Sprite" parent="."]
+[node name="WinchesterEnding" type="Sprite" parent="Arts"]
 visible = false
-position = Vector2( 42, 24 )
-texture = ExtResource( 22 )
-
-[node name="WinchesterEnding" type="Sprite" parent="."]
-visible = false
-position = Vector2( 42, 24 )
 texture = ExtResource( 20 )
 
-[node name="WizardEnding" type="Sprite" parent="."]
+[node name="VampireAlternateEnding" type="Sprite" parent="Arts"]
 visible = false
-position = Vector2( 42, 24 )
+texture = ExtResource( 22 )
+
+[node name="DwarfEnding" type="Sprite" parent="Arts"]
+visible = false
+texture = ExtResource( 14 )
+
+[node name="DragonEnding" type="Sprite" parent="Arts"]
+visible = false
+texture = ExtResource( 17 )
+
+[node name="WizardEnding" type="Sprite" parent="Arts"]
+visible = false
 texture = ExtResource( 19 )
 
-[node name="YggdrasilEnding" type="Sprite" parent="."]
+[node name="AliensEnding" type="Sprite" parent="Arts"]
 visible = false
-position = Vector2( 42, 24 )
+texture = ExtResource( 15 )
+
+[node name="YggdrasilEnding" type="Sprite" parent="Arts"]
+visible = false
 texture = ExtResource( 21 )
+
+[node name="RealityShowEnding" type="Sprite" parent="Arts"]
+visible = false
+texture = ExtResource( 18 )
 
 [connection signal="pressed" from="CenterContainer/GridContainer/Mixed" to="." method="_on_Mixed_pressed"]
 [connection signal="pressed" from="CenterContainer/GridContainer/Necronomicon" to="." method="_on_Necronomicon_pressed"]

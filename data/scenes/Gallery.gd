@@ -26,96 +26,135 @@ func _ready():
 func _on_Mixed_pressed():
 	AudioManager.play_sfx(blip)
 	
-	var sprite = $MixedEnding
+	var sprite = $Arts/MixedEnding
+	var current_button = $CenterContainer/GridContainer/Mixed
+	
 	if sprite.is_visible():
-		sprite.set_visible(false)
+		hide_art()
 	else:
-		sprite.set_visible(true)
+		show_art(sprite, current_button)
 
 func _on_Necronomicon_pressed():
 	AudioManager.play_sfx(blip)
 	
-	var sprite = $CthuluEnding
+	var sprite = $Arts/CthuluEnding
+	var current_button = $CenterContainer/GridContainer/Necronomicon
+	
 	if sprite.is_visible():
-		sprite.set_visible(false)
+		hide_art()
 	else:
-		sprite.set_visible(true)
+		show_art(sprite, current_button)
 
 func _on_Wood_pressed():
 	AudioManager.play_sfx(blip)
 	
-	var sprite = $WinchesterEnding
+	var sprite = $Arts/WinchesterEnding
+	var current_button = $CenterContainer/GridContainer/Wood
+	
 	if sprite.is_visible():
-		sprite.set_visible(false)
+		hide_art()
 	else:
-		sprite.set_visible(true)
+		show_art(sprite, current_button)
 
 
 func _on_Bat_pressed():
 	AudioManager.play_sfx(blip)
 	
-	var sprite = $VampireAlternateEnding
+	var sprite = $Arts/VampireAlternateEnding
+	var current_button = $CenterContainer/GridContainer/Bat
+	
 	if sprite.is_visible():
-		sprite.set_visible(false)
+		hide_art()
 	else:
-		sprite.set_visible(true)
+		show_art(sprite, current_button)
 
 func _on_Pickaxe_pressed():
 	AudioManager.play_sfx(blip)
 	
-	var sprite = $DwarfEnding
+	var sprite = $Arts/DwarfEnding
+	var current_button = $CenterContainer/GridContainer/Pickaxe
+	
 	if sprite.is_visible():
-		sprite.set_visible(false)
+		hide_art()
 	else:
-		sprite.set_visible(true)
+		show_art(sprite, current_button)
 
 func _on_Rock_pressed():
 	AudioManager.play_sfx(blip)
 	
-	var sprite = $DragonEnding
+	var sprite = $Arts/DragonEnding
+	var current_button = $CenterContainer/GridContainer/Rock
+	
 	if sprite.is_visible():
-		sprite.set_visible(false)
+		hide_art()
 	else:
-		sprite.set_visible(true)
+		show_art(sprite, current_button)
 
 func _on_Sinalizer_pressed():
 	AudioManager.play_sfx(blip)
 	
-	var sprite = $AliensEnding
+	var sprite = $Arts/AliensEnding
+	var current_button = $CenterContainer/GridContainer/Sinalizer
+	
 	if sprite.is_visible():
-		sprite.set_visible(false)
+		hide_art()
 	else:
-		sprite.set_visible(true)
+		show_art(sprite, current_button)
 
 func _on_Hat_pressed():
 	AudioManager.play_sfx(blip)
 	
-	var sprite = $WizardEnding
+	var sprite = $Arts/WizardEnding
+	var current_button = $CenterContainer/GridContainer/Hat
+	
 	if sprite.is_visible():
-		sprite.set_visible(false)
+		hide_art()
 	else:
-		sprite.set_visible(true)
+		show_art(sprite, current_button)
 
 func _on_Leaf_pressed():
 	AudioManager.play_sfx(blip)
 	
-	var sprite = $YggdrasilEnding
+	var sprite = $Arts/YggdrasilEnding
+	var current_button = $CenterContainer/GridContainer/Leaf
+	
 	if sprite.is_visible():
-		sprite.set_visible(false)
+		hide_art()
 	else:
-		sprite.set_visible(true)
+		show_art(sprite, current_button)
 
 func _on_Movie_pressed():
 	AudioManager.play_sfx(blip)
 	
-	var sprite = $RealityShowEnding
+	var sprite = $Arts/RealityShowEnding
+	var current_button = $CenterContainer/GridContainer/Movie
+	
 	if sprite.is_visible():
-		sprite.set_visible(false)
+		hide_art()
 	else:
-		sprite.set_visible(true)
+		show_art(sprite, current_button)
 
 func _on_Return_pressed():
 	AudioManager.play_sfx(back_bweep)
 	
 	get_parent().menu_sel = 1
 	self.queue_free()
+
+func show_art(art, current_button):
+	var buttons = get_node("CenterContainer/GridContainer").get_children()
+	
+	art.set_visible(true)
+	
+	for child in buttons:
+		if child.get_index() != current_button.get_index():
+			child.focus_mode = FOCUS_NONE
+
+func hide_art():
+	var arts = get_node("Arts").get_children()
+	var buttons = get_node("CenterContainer/GridContainer").get_children()
+	
+	for child in arts:
+		child.set_visible(false)
+	
+	for child in buttons:
+		child.focus_mode = FOCUS_ALL
