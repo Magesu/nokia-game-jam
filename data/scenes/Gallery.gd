@@ -1,9 +1,10 @@
 extends Control
 
+# Sound
+var back_bweep:AudioStream = preload("res://data/sfx/back_bweep.wav")
+var blip:AudioStream = preload("res://data/sfx/art_blip.wav")
 
 # Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 export(int) var avail_endings
 
 # Called when the node enters the scene tree for the first time.
@@ -23,6 +24,8 @@ func _ready():
 #	pass
 
 func _on_Mixed_pressed():
+	AudioManager.play_sfx(blip)
+	
 	var sprite = $MixedEnding
 	if sprite.is_visible():
 		sprite.set_visible(false)
@@ -30,6 +33,8 @@ func _on_Mixed_pressed():
 		sprite.set_visible(true)
 
 func _on_Necronomicon_pressed():
+	AudioManager.play_sfx(blip)
+	
 	var sprite = $CthuluEnding
 	if sprite.is_visible():
 		sprite.set_visible(false)
@@ -37,6 +42,8 @@ func _on_Necronomicon_pressed():
 		sprite.set_visible(true)
 
 func _on_Wood_pressed():
+	AudioManager.play_sfx(blip)
+	
 	var sprite = $WinchesterEnding
 	if sprite.is_visible():
 		sprite.set_visible(false)
@@ -45,6 +52,8 @@ func _on_Wood_pressed():
 
 
 func _on_Bat_pressed():
+	AudioManager.play_sfx(blip)
+	
 	var sprite = $VampireAlternateEnding
 	if sprite.is_visible():
 		sprite.set_visible(false)
@@ -52,6 +61,8 @@ func _on_Bat_pressed():
 		sprite.set_visible(true)
 
 func _on_Pickaxe_pressed():
+	AudioManager.play_sfx(blip)
+	
 	var sprite = $DwarfEnding
 	if sprite.is_visible():
 		sprite.set_visible(false)
@@ -59,6 +70,8 @@ func _on_Pickaxe_pressed():
 		sprite.set_visible(true)
 
 func _on_Rock_pressed():
+	AudioManager.play_sfx(blip)
+	
 	var sprite = $DragonEnding
 	if sprite.is_visible():
 		sprite.set_visible(false)
@@ -66,6 +79,8 @@ func _on_Rock_pressed():
 		sprite.set_visible(true)
 
 func _on_Sinalizer_pressed():
+	AudioManager.play_sfx(blip)
+	
 	var sprite = $AliensEnding
 	if sprite.is_visible():
 		sprite.set_visible(false)
@@ -73,6 +88,8 @@ func _on_Sinalizer_pressed():
 		sprite.set_visible(true)
 
 func _on_Hat_pressed():
+	AudioManager.play_sfx(blip)
+	
 	var sprite = $WizardEnding
 	if sprite.is_visible():
 		sprite.set_visible(false)
@@ -80,6 +97,8 @@ func _on_Hat_pressed():
 		sprite.set_visible(true)
 
 func _on_Leaf_pressed():
+	AudioManager.play_sfx(blip)
+	
 	var sprite = $YggdrasilEnding
 	if sprite.is_visible():
 		sprite.set_visible(false)
@@ -87,6 +106,8 @@ func _on_Leaf_pressed():
 		sprite.set_visible(true)
 
 func _on_Movie_pressed():
+	AudioManager.play_sfx(blip)
+	
 	var sprite = $RealityShowEnding
 	if sprite.is_visible():
 		sprite.set_visible(false)
@@ -94,5 +115,7 @@ func _on_Movie_pressed():
 		sprite.set_visible(true)
 
 func _on_Return_pressed():
+	AudioManager.play_sfx(back_bweep)
+	
 	get_parent().menu_sel = 1
 	self.queue_free()
