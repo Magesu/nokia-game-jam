@@ -13,6 +13,7 @@ onready var fade_player = get_parent().get_node("CanvasModulate/AnimationPlayer"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+
 	get_node("AnimatedSprite").play("idle")
 	is_holding = false
 
@@ -21,7 +22,6 @@ func _ready():
 func _process(_delta):
 	# Makes the order of drawing in the screen dependant on the Y coordinate to give the impression of depth
 	z_index = int(position.y)
-	
 	# Player movement
 	var velocity = Vector2.ZERO # The player's movement vector.
 	if Input.is_action_pressed("player_right"):
@@ -40,11 +40,11 @@ func _process(_delta):
 			if is_holding:
 				# Detects if the house is nearby and stores the house node into a variable
 				var house
-				var objects = reach.get_overlapping_bodies()
+				var objects = reach.get_overlapping_areas()
 				
 				for object in objects:
-					if object.is_in_group("house"):
-						house = object
+					if object.is_in_group("storage"):
+						house = object.get_parent()
 						break
 				
 				# If house exists and the storage has space, store what the player is holding
@@ -62,16 +62,18 @@ func _process(_delta):
 				# Detects the objects within range and puts them into an array
 				var objects = []
 				objects = reach.get_overlapping_bodies()
-				
+				objects.append_array(reach.get_overlapping_areas())
 				# Filters out unpickable objects
 				var temp = []
 				for object in objects:
 					if object.is_in_group("item"):
 						if object.currentState != object.STATES.DROPPED:
 							continue
-					elif object.is_in_group("house"):
-						if object.storage == []:
+					elif object.is_in_group("storage"):
+						if object.get_parent().storage == []:
 							continue
+					elif object.is_in_group("house"):
+						continue
 					temp.append(object)
 				objects = temp
 				
@@ -96,9 +98,9 @@ func _process(_delta):
 					elif nearest_object.is_in_group("material source"):
 						is_holding = true
 						inventory = nearest_object._collect()
-					# If it's a house, checks if there's stuff in the house and if there is withdraws the rightmost item
-					elif nearest_object.is_in_group("house"):
-						var house_object = nearest_object._withdraw()
+					# If it's a storage, checks if there's stuff in the storage and if there is withdraws the rightmost item
+					elif nearest_object.is_in_group("storage"):
+						var house_object = (nearest_object.get_parent())._withdraw()
 						if house_object != null:
 							is_holding = true
 							inventory = house_object

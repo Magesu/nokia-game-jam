@@ -91,9 +91,22 @@ func _ready():
 	sprite.offset.y = -sprite.texture.get_height()
 	
 	match current_stage:
-		0: storage_limit = 1
-		1: storage_limit = 3
-		2: storage_limit = 5
+		0: 
+			storage_limit = 1
+			var storage_range = RectangleShape2D.new()
+			storage_range.extents = Vector2(6, 12)
+			$StorageRange/CollisionShape2D.shape = storage_range
+		1: 
+			storage_limit = 3
+			var storage_range = RectangleShape2D.new()
+			storage_range.extents = Vector2(6*3 + 3, 12)
+			$StorageRange/CollisionShape2D.shape = storage_range
+			
+		2: 
+			storage_limit = 5
+			var storage_range = RectangleShape2D.new()
+			storage_range.extents = Vector2(6*5 + 5, 12)
+			$StorageRange/CollisionShape2D.shape = storage_range
 	
 	# Creates the necessary amount of storage boxes in the ui
 	for i in storage_limit:
