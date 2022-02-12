@@ -29,7 +29,7 @@ var bat = preload("res://data/scenes/Bat.tscn")
 var hat = preload("res://data/scenes/MagicHat.tscn")
 var clapboard = preload("res://data/scenes/Clapboard.tscn")
 
-var possible_bonus_items = [necronomicon, pickaxe, sinalizer, bat, hat, clapboard]
+var possible_bonus_items
 
 # Signals
 signal house_data_request
@@ -69,26 +69,26 @@ func spawn_house(type):
 			item_scene = sinalizer
 		
 		if item_scene != null:
-			# Removes the guaranteed special item from the possible bonus items
-			possible_bonus_items.erase(item_scene)
-			
 			var special_item = item_scene.instance()
 			special_item.position = item_spawn_pos
 		
 			self.add_child(special_item)
 		
 		if player.power_up_more_special_items:
+			# Sets the possible bonus items then removes the guaranteed special item from the possible bonus items
+			possible_bonus_items = [necronomicon, pickaxe, sinalizer]
+			possible_bonus_items.erase(item_scene)
+			
 			# Creates array with the possible item spawn positions and removes the one used to spawn the guaranteed special item
 			var powered_up_possible_spawn_locations = possible_item_spawn_locations
 			powered_up_possible_spawn_locations.erase(item_spawn_pos)
 			
-			# Cycles through each remaining position, spawns a random special item from the possible special items and removes that special item from the list of spawnable bonus items
+			# Cycles through each remaining position and spawns a random special item from the possible special items
 			for i in powered_up_possible_spawn_locations.size():
 				var bonus_item_scene = possible_bonus_items[randi() % possible_bonus_items.size()]
 				var bonus_item = bonus_item_scene.instance()
 				bonus_item.position = powered_up_possible_spawn_locations[i]
 				self.add_child(bonus_item)
-				possible_bonus_items.erase(bonus_item_scene)
 		
 	elif stage == 2:
 		possible_item_spawn_locations = []
@@ -105,22 +105,23 @@ func spawn_house(type):
 			item_scene = clapboard
 		
 		if item_scene != null:
-			possible_bonus_items.erase(item_scene)
-			
 			var special_item = item_scene.instance()
 			special_item.position = item_spawn_pos
 		
 			self.add_child(special_item)
 		
 		if player.power_up_more_special_items:
+			# Sets the possible bonus items then removes the guaranteed special item from the possible bonus items
+			possible_bonus_items = [necronomicon, pickaxe, sinalizer, bat, hat, clapboard]
+			possible_bonus_items.erase(item_scene)
+			
 			# Creates array with the possible item spawn positions and removes the one used to spawn the guaranteed special item
 			var powered_up_possible_spawn_locations = possible_item_spawn_locations
 			powered_up_possible_spawn_locations.erase(item_spawn_pos)
 			
-			# Cycles through each remaining position, spawns a random special item from the possible special items and removes that special item from the list of spawnable bonus items
+			# Cycles through each remaining position and spawns a random special item from the possible special items
 			for i in powered_up_possible_spawn_locations.size():
 				var bonus_item_scene = possible_bonus_items[randi() % possible_bonus_items.size()]
 				var bonus_item = bonus_item_scene.instance()
 				bonus_item.position = powered_up_possible_spawn_locations[i]
 				self.add_child(bonus_item)
-				possible_bonus_items.erase(bonus_item_scene)

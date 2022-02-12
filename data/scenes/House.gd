@@ -137,6 +137,9 @@ func _store(item):
 		item.currentState = item.STATES.STORED
 		if	item.material_type == item.MATERIAL_TYPES.SPECIAL:
 			
+			if player.power_up_more_special_items:
+				player.power_up_more_special_items = false
+			
 			var new_house
 			var ending
 			

@@ -79,6 +79,13 @@ func _on_House_upgrade_house(new_house,ENDINGS,ending):
 	var player = get_node("Player")
 	player.is_holding = false
 	
+	if new_house == 1: # WOOD_CABIN
+		player.power_up_speed = true
+	elif new_house == 4: # ROCK_HUT
+		player.power_up_starter_item = true
+	elif new_house == 7: # LEAF_BUNGALOW
+		player.power_up_more_special_items = true
+	
 	var map = self.get_child(self.get_child_count()-1)
 	map.queue_free()
 	
