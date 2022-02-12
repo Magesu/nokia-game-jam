@@ -17,6 +17,13 @@ onready var sprite = get_node("Sprite")
 onready var collision_box = get_node("CollisionShape2D")
 onready var storage_ui = get_node("Storage")
 onready var game = self.get_parent().get_parent()
+onready var map = self.get_parent()
+onready var player = game.get_node("Player")
+
+# Scenes
+var wood_scene = preload("res://data/scenes/Wood.tscn")
+var rock_scene = preload("res://data/scenes/Rock.tscn")
+var leaf_scene = preload("res://data/scenes/Leaf.tscn")
 
 # Signals
 signal upgrade_house(new_house,ENDINGS,ending)
@@ -116,6 +123,9 @@ func _ready():
 		storage_ui.add_child(new_storage_box)
 	
 	connect("upgrade_house", game, "_on_House_upgrade_house")
+	
+	if player.power_up_starter_item:
+		call_deferred("_spawn_starter_item")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -132,15 +142,24 @@ func _store(item):
 			
 			match item.special_type:
 				item.SPECIAL_TYPES.NECRONOMICON:
-					new_house = TYPES.TEMPLE
+					if current_stage == 1:
+						new_house = TYPES.TEMPLE
+					elif current_stage == 2:
+						ending = ENDINGS.WOOD_NECRONOMICON
 				item.SPECIAL_TYPES.BAT:
 					ending = ENDINGS.WOOD_BAT
 				item.SPECIAL_TYPES.PICKAXE:
-					new_house = TYPES.MINE
+					if current_stage == 1:
+						new_house = TYPES.MINE
+					elif current_stage == 2:
+						ending = ENDINGS.ROCK_PICKAXE
 				item.SPECIAL_TYPES.MAGIC_HAT:
 					ending = ENDINGS.ROCK_MAGIC_HAT
 				item.SPECIAL_TYPES.SINALIZER:
-					new_house = TYPES.ALIEN_PYRAMID
+					if current_stage == 1:
+						new_house = TYPES.ALIEN_PYRAMID
+					elif current_stage == 2:
+						ending = ENDINGS.LEAF_SINALIZER
 				item.SPECIAL_TYPES.CLAPBOARD:
 					ending = ENDINGS.LEAF_CLAPBOARD
 			
@@ -214,3 +233,11 @@ func _fall_out():
 		var stored_item = storage.pop_back()
 		stored_item.global_position = storage_ui.get_child(storage.size()-1).get_global_position() + Vector2(20,16)
 		stored_item.currentState = stored_item.STATES.DROPPED
+
+func _spawn_starter_item():
+	var possible_starter_items = [wood_scene.instance(),rock_scene.instance(),leaf_scene.instance()]
+	var starter_item = possible_starter_items[randi() % possible_starter_items.size()]
+
+	map.add_child(starter_item)
+
+	_store(starter_item)

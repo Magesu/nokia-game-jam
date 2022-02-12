@@ -10,13 +10,16 @@ export var speed = 40
 var is_holding = false
 var inventory
 
+export var power_up_speed = false
+export var power_up_starter_item = false
+export var power_up_more_special_items = false
+
 #Nodes
 onready var reach = get_node("Reach")
 onready var fade_player = get_parent().get_node("CanvasModulate/AnimationPlayer")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-
 	get_node("AnimatedSprite").play("idle")
 	is_holding = false
 
@@ -36,7 +39,10 @@ func _process(_delta):
 	if Input.is_action_pressed("player_up"):
 		velocity.y -= speed
 
-	move_and_slide(velocity)
+	if power_up_speed:
+		move_and_slide(velocity*1.5)
+	else:
+		move_and_slide(velocity)
 	
 	if !fade_player.is_playing():
 		if Input.is_action_just_pressed("player_action"):

@@ -25,7 +25,7 @@ extents = Vector2( 2, 102 )
 [node name="Map" type="Node2D"]
 script = ExtResource( 2 )
 stage = 2
-possible_item_spawn_locations_node_paths = [ NodePath("Item Spawn 1"), NodePath("Item Spawn 2"), NodePath("Item Spawn 3") ]
+possible_item_spawn_locations_node_paths = [ NodePath("Item Spawn 1"), NodePath("Item Spawn 2"), NodePath("Item Spawn 3"), NodePath("Item Spawn 4") ]
 
 [node name="Park" type="Sprite" parent="."]
 texture = ExtResource( 1 )

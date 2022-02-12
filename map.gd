@@ -21,6 +21,16 @@ onready var player = get_parent().get_node("Player")
 var house_scene = preload("res://data/scenes/House.tscn")
 var item_scene
 
+# Special items
+var necronomicon = preload("res://data/scenes/Necronomicon.tscn")
+var pickaxe = preload("res://data/scenes/Pickaxe.tscn")
+var sinalizer = preload("res://data/scenes/Sinalizer.tscn")
+var bat = preload("res://data/scenes/Bat.tscn")
+var hat = preload("res://data/scenes/MagicHat.tscn")
+var clapboard = preload("res://data/scenes/Clapboard.tscn")
+
+var possible_bonus_items = [necronomicon, pickaxe, sinalizer, bat, hat, clapboard]
+
 # Signals
 signal house_data_request
 
@@ -52,17 +62,34 @@ func spawn_house(type):
 		item_spawn_pos = possible_item_spawn_locations[randi() % possible_item_spawn_locations.size()]
 		
 		if house.current_type == house.TYPES.WOOD_CABIN:
-			item_scene = preload("res://data/scenes/Necronomicon.tscn")
+			item_scene = necronomicon
 		elif house.current_type == house.TYPES.ROCK_HUT:
-			item_scene = preload("res://data/scenes/Pickaxe.tscn")
+			item_scene = pickaxe
 		elif house.current_type == house.TYPES.LEAF_BUNGALOW:
-			item_scene = preload("res://data/scenes/Sinalizer.tscn")
+			item_scene = sinalizer
 		
 		if item_scene != null:
+			# Removes the guaranteed special item from the possible bonus items
+			possible_bonus_items.erase(item_scene)
+			
 			var special_item = item_scene.instance()
 			special_item.position = item_spawn_pos
 		
 			self.add_child(special_item)
+		
+		if player.power_up_more_special_items:
+			# Creates array with the possible item spawn positions and removes the one used to spawn the guaranteed special item
+			var powered_up_possible_spawn_locations = possible_item_spawn_locations
+			powered_up_possible_spawn_locations.erase(item_spawn_pos)
+			
+			# Cycles through each remaining position, spawns a random special item from the possible special items and removes that special item from the list of spawnable bonus items
+			for i in powered_up_possible_spawn_locations.size():
+				var bonus_item_scene = possible_bonus_items[randi() % possible_bonus_items.size()]
+				var bonus_item = bonus_item_scene.instance()
+				bonus_item.position = powered_up_possible_spawn_locations[i]
+				self.add_child(bonus_item)
+				possible_bonus_items.erase(bonus_item_scene)
+		
 	elif stage == 2:
 		possible_item_spawn_locations = []
 		for i in possible_item_spawn_locations_node_paths.size():
@@ -71,14 +98,29 @@ func spawn_house(type):
 		item_spawn_pos = possible_item_spawn_locations[randi() % possible_item_spawn_locations.size()]
 		
 		if house.current_type == house.TYPES.WOODEN_MANSION:
-			item_scene = preload("res://data/scenes/Bat.tscn")
+			item_scene = bat
 		elif house.current_type == house.TYPES.STONE_TOWER:
-			item_scene = preload("res://data/scenes/MagicHat.tscn")
+			item_scene = hat
 		elif house.current_type == house.TYPES.TREE_HOUSE:
-			item_scene = preload("res://data/scenes/Clapboard.tscn")
+			item_scene = clapboard
 		
 		if item_scene != null:
+			possible_bonus_items.erase(item_scene)
+			
 			var special_item = item_scene.instance()
 			special_item.position = item_spawn_pos
 		
 			self.add_child(special_item)
+		
+		if player.power_up_more_special_items:
+			# Creates array with the possible item spawn positions and removes the one used to spawn the guaranteed special item
+			var powered_up_possible_spawn_locations = possible_item_spawn_locations
+			powered_up_possible_spawn_locations.erase(item_spawn_pos)
+			
+			# Cycles through each remaining position, spawns a random special item from the possible special items and removes that special item from the list of spawnable bonus items
+			for i in powered_up_possible_spawn_locations.size():
+				var bonus_item_scene = possible_bonus_items[randi() % possible_bonus_items.size()]
+				var bonus_item = bonus_item_scene.instance()
+				bonus_item.position = powered_up_possible_spawn_locations[i]
+				self.add_child(bonus_item)
+				possible_bonus_items.erase(bonus_item_scene)
