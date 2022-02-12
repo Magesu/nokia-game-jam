@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/bweep.wav-01109e269d7c0b29992d3502a0743f5b.sample"
+
+[deps]
+
+source_file="res://data/sfx/bweep.wav"
+dest_files=[ "res://.import/bweep.wav-01109e269d7c0b29992d3502a0743f5b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=true
+edit/loop=false
+compress/mode=0

@@ -1,5 +1,8 @@
 extends KinematicBody2D
 
+# Sound Stuff
+var pick_up_sound:AudioStream = preload("res://data/sfx/pick_up.wav")
+var store_in_house_sound:AudioStream = preload("res://data/sfx/store_in_house.wav")
 
 # Declare member variables here. Examples:
 export var speed = 40
@@ -49,9 +52,15 @@ func _process(_delta):
 				
 				# If house exists and the storage has space, store what the player is holding
 				if house != null and house.storage.size() < house.storage_limit:
+					# Play sound
+					AudioManager.play_sfx(store_in_house_sound)
+					
 					house._store(inventory)
 				# Else then places item at player's feet
 				else:
+					# Play sound
+					AudioManager.play_sfx(pick_up_sound)
+					
 					inventory.global_position = self.global_position + Vector2(1,2)
 					inventory.currentState = inventory.STATES.DROPPED
 				
@@ -79,6 +88,9 @@ func _process(_delta):
 				
 				# Checks if any objects at all are within range
 				if objects != []:
+					# Play sound
+					AudioManager.play_sfx(pick_up_sound)
+					
 					# Iterates through all the objects and stores the nearest one in a variable
 					var nearest_object = objects[0]
 					

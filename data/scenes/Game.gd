@@ -2,6 +2,10 @@ extends Node
 
 # Variables
 var music:AudioStream = preload("res://data/music/tune.wav")
+var bweep:AudioStream = preload("res://data/sfx/bweep.wav")
+var blip:AudioStream = preload("res://data/sfx/blip.wav")
+var upgrade:AudioStream = preload("res://data/sfx/upgrade.wav")
+var ending_jingle:AudioStream = preload("res://data/sfx/ending_jingle.wav")
 
 export var menu_sel = 0
 var avail_ending = 732
@@ -33,6 +37,7 @@ func _process(_delta):
 		if current_stage == -2:
 			if Input.is_action_just_pressed("player_action"):
 				if menu_sel == 0:
+					AudioManager.play_sfx(bweep)
 					anim_player.play("Fade")
 					yield(anim_player, "animation_finished")
 					fade_in()
@@ -40,6 +45,7 @@ func _process(_delta):
 					current_stage += 1
 					
 				elif menu_sel == 1:
+					AudioManager.play_sfx(blip)
 					var gallery = gallery_scene.instance()
 					gallery.avail_endings = avail_ending
 					self.add_child(gallery)
@@ -62,6 +68,11 @@ func _on_Map_house_data_request():
 	map.spawn_house(house_holder)
 
 func _on_House_upgrade_house(new_house,ENDINGS,ending):
+	if current_stage < 2:
+		AudioManager.play_sfx(upgrade)
+	else:
+		AudioManager.play_sfx(ending_jingle)
+	
 	anim_player.play("Fade")
 	yield(anim_player, "animation_finished")
 	
