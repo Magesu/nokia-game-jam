@@ -59,10 +59,14 @@ func _process(_delta):
 			elif Input.is_action_just_pressed("player_down"):
 				if menu_sel < 2:
 					menu_sel += 1
+				else:
+					menu_sel = 0
 			
 			elif Input.is_action_just_pressed("player_up"):
 				if menu_sel > 0:
 					menu_sel -= 1
+				else:
+					menu_sel = 2
 
 func _on_Map_house_data_request():
 	var map = self.get_child(self.get_child_count()-1)
