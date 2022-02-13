@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://data/scenes/Font.tres" type="Theme" id=1]
 [ext_resource path="res://data/scenes/Options.gd" type="Script" id=2]
+[ext_resource path="res://data/sprites/title_screen.png" type="Texture" id=3]
 [ext_resource path="res://data/scenes/Game.gd" type="Script" id=4]
 
 [sub_resource type="Animation" id=1]
@@ -31,18 +32,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorRect" type="ColorRect" parent="Control"]
-margin_right = 84.0
-margin_bottom = 48.0
-
-[node name="Label" type="Label" parent="Control"]
-margin_right = 84.0
-margin_bottom = 48.0
-text = " Homeless
- Bean"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="TitleScreen" type="Sprite" parent="Control"]
+position = Vector2( 42, 24 )
+texture = ExtResource( 3 )
 
 [node name="Options" type="Label" parent="Control"]
 margin_right = 84.0
