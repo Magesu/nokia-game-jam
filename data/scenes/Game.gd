@@ -28,6 +28,8 @@ var stage_2_scene = preload("res://stage2.tscn")
 var ending_scene = preload("res://data/scenes/Ending.tscn")
 
 func _ready() -> void:
+	randomize()
+	
 	fade_in()
 	AudioManager.play_music(music)
 	#$UI/AnimationPlayer.play("New Anim")
