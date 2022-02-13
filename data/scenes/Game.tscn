@@ -36,11 +36,10 @@ margin_right = 84.0
 margin_bottom = 48.0
 
 [node name="Label" type="Label" parent="Control"]
-margin_left = 2.0
-margin_right = 86.0
+margin_right = 84.0
 margin_bottom = 48.0
-text = "The builder
- bean, Ben"
+text = " Homeless
+ Bean"
 __meta__ = {
 "_edit_use_anchors_": false
 }
