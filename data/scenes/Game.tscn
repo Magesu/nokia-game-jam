@@ -40,7 +40,8 @@ texture = ExtResource( 3 )
 margin_right = 84.0
 margin_bottom = 48.0
 text = ">Start 
->Gallery "
+>Gallery 
+>Quit "
 align = 2
 valign = 2
 max_lines_visible = 1

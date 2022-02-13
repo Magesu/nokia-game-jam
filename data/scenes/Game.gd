@@ -52,9 +52,14 @@ func _process(_delta):
 					gallery.avail_endings = avail_ending
 					self.add_child(gallery)
 					menu_sel = 10
+				
+				elif menu_sel == 2:
+					anim_player.play("Fade")
+					yield(anim_player, "animation_finished")
+					get_tree().quit()
 
 			elif Input.is_action_just_pressed("player_down"):
-				if menu_sel < 1:
+				if menu_sel < 2:
 					menu_sel += 1
 				else:
 					menu_sel = 0
@@ -63,7 +68,7 @@ func _process(_delta):
 				if menu_sel > 0:
 					menu_sel -= 1
 				else:
-					menu_sel = 1
+					menu_sel = 2
 
 func _on_Map_house_data_request():
 	var map = self.get_child(self.get_child_count()-1)
